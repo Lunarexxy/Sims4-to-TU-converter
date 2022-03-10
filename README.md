@@ -15,4 +15,6 @@
 * If it succeeded, you should now have a "Sims 4" button in the sidebar. Click it to see what to do next.
 
 ## Contributing
-This is my first Blender add-on, so it might be a bit janky, but it seems to work! Please report bugs and suggest improvements, if you have any 💖
+This is my first Blender add-on, so it might be a bit janky, but it seems to work!
+
+Please report bugs and suggest improvements, if you have any 💖
