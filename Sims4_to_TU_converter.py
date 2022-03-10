@@ -2,6 +2,7 @@ bl_info = {
     "name": "Sims4 to Tower Unite Converter",
     "blender": (2, 80, 0),
     "category": "Object",
+    "author": "Lunarexxy"
 }
 
 import bpy
