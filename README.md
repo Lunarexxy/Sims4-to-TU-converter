@@ -8,6 +8,6 @@
 * Open Blender
 * Go to Edit -> Preferences -> Add-ons
 * Press the Install button and select the downloaded file
-* Make sure the little tickbox next to the addon is checked, to enable it
-* Hover over the 3D viewport and press N to pop out the sidebar
+* Make sure the little box is checked, to the left of the addon name, to enable it
+* Hover your cursor over the 3D viewport, and press N to pop out the sidebar
 * If it succeeded, you should now have a "Sims 4" button in the sidebar. Click it to see what to do next.
