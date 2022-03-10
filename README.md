@@ -4,7 +4,7 @@
  It's my first ever Blender add-on, so it might be a bit janky, but it seems to work most of the time!
 
 ## How to install
-* Download the **[Sims4_to_TU_converter.py](https://raw.githubusercontent.com/Lunarexxy/Sims4-to-TU-converter/main/Sims4_to_TU_converter.py)** file *(Right-click the page and Save As)*
+* Download the **[Sims4_to_TU_converter.py](https://raw.githubusercontent.com/Lunarexxy/Sims4-to-TU-converter/main/Sims4_to_TU_converter.py)** file *(Right-click the page and Save As, anywhere on your machine)*
 * Open Blender
 * Go to Edit -> Preferences -> Add-ons
 * Press the Install button and select the downloaded file
