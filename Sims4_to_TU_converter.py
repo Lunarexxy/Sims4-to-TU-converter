@@ -155,8 +155,6 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
             self.debug("Deleting the original armature.")
             self.debug("(If you haven't parented the mesh to the TU Armature yet, this is fine.)")
             bpy.ops.object.modifier_remove(modifier="Armature")
-        
-        #boobs_detected = len(obj.vertex_groups) == 100
 
         # Replace names
         self.debug("Renaming vertex groups.")
@@ -248,38 +246,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-    
-# Adding the vertex mix modifier
-#(can you set a custom name in modifier_add? no - you can rename it after but you still need the original name)
-#bpy.ops.object.modifier_add(type='VERTEX_WEIGHT_MIX')
-#bpy.context.object.modifiers["VertexWeightMix"].mix_set = 'ALL'
-#bpy.context.object.modifiers["VertexWeightMix"].mix_mode = 'ADD'
-#bpy.context.object.modifiers["VertexWeightMix"].vertex_group_a = "b__Head__"
-#bpy.context.object.modifiers["VertexWeightMix"].vertex_group_b = "b__R_Eye__"
-#bpy.ops.object.modifier_apply(modifier="VertexWeightMix")
-
-
-# Make a vertex group the actively selected one
-#bpy.ops.object.vertex_group_set_active(group='b__L_MidBrow__')
-# Removes the active vertex group    
-#bpy.ops.object.vertex_group_remove()
-
-
-
-# code dump for maybe useful snippets
-#
-#        vgroup_names = {vgroup.index: vgroup.name for vgroup in obj.vertex_groups}
-#       
-#        self.print( str(len(vgroup_names)) )
-#        for id in vgroup_names:
-#            self.print( vgroup_names[id] )
-#            if vgroup_names[id] == "b__Head__":
-#                self.print( "beaning" )
-#                vgroup_names[id] = "b__Head__beaned"
-#                self.print( vgroup_names[id] )
-#
-#
-#
-#
-def menu_func(self, context):
-    self.layout.operator(ObjectCursorArray.bl_idname)
