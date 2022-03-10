@@ -1,7 +1,7 @@
 # Sims4 to Tower Unite converter
  Automates the process of merging/renaming vertex groups to fit Tower Unite's armature. It relies on the .dae models exported by [TS4-SimsRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! The settings I use when exporting are *"Solid and glass meshes and textures"* and *"Clean DAE mesh"*.
  
- *(i have no idea if .obj files would work too, never tried! have fun being a pioneer if you want~)*
+ *(i have no idea if .obj files would work too, never tried! Have fun being a pioneer if you want~)*
  
  Also keep in mind that Tower Unite currently has a 30,000 vertex limit. If your model has more vertices than this, many players might not be able to see it in-game!
 
