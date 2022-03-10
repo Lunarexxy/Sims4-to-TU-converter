@@ -9,7 +9,7 @@ import bpy
 class OBJECT_OT_Sims4Importer(bpy.types.Operator):
     """Run this to make the model compatible with the Tower Unite Armature"""
     bl_idname = "object.sims4_fix_vertex_groups" # some unique internal id - can be called from console
-    bl_label = "Sims4toTU - Fix Vertex Groups" # should be what's shown in the f3 menu
+    bl_label = "Fix Vertex Groups" # should be what's shown in the f3 menu
     bl_options = {'REGISTER', 'UNDO'} # apparently makes it work with the undo system
     
     # Vertex groups to be renamed
@@ -122,7 +122,6 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
     def debug(self, message):
         self.report({'INFO'}, message)
     
-    # TODO test
     # Merges group_b into group_a, leaving only group_a.
     # Is it a bad idea to do this while iterating? Could just unroll it, whatever
     def merge_groups(self, group_a_name, group_b_name):
@@ -145,11 +144,11 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         
         # Sanity checks
         if obj is None or obj.type != 'MESH' or obj.name == 'rig':
-            self.debug('The mesh itself needs to be selected. Did you remember to delete the rig object with X?')
+            self.debug('FAILED: Mesh is not selected. Did you remember to delete the rig object with X?')
             return {'CANCELLED'}
         # (since i apparently can't set the name, i have to rely on new modifiers being called "VertexWeightMix")
         if "VertexWeightMix" in obj.modifiers: 
-            self.debug("There's currently a modifier named VertexWeightMix on the model. Can't run script safely.")
+            self.debug("FAILED: There's currently a modifier named VertexWeightMix on the model. Can't run script safely.")
             return {'CANCELLED'}
         if "Armature" in obj.modifiers:
             self.debug("Deleting the original armature.")
@@ -218,18 +217,34 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
                     
         
         
-        self.report({'INFO'}, 'Done!')
+        self.report({'INFO'}, 'SUCCESS: Done!')
         return {'FINISHED'}
 
-def menu_func(self, context):
-    self.layout.operator(ObjectCursorArray.bl_idname)
+class VIEW3D_PT_Sims4Importer(bpy.types.Panel):
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_category = 'Sims 4'
+    bl_label = 'Sims 4 to Tower Unite'
+    
+    def draw(self, context):
+        self.layout.label(text="1: Import model")
+        self.layout.label(text="2: Delete rig (with X)")
+        self.layout.label(text="3: Select mesh")
+        self.layout.label(text='4: Press "Fix Vertex Groups"')
+        self.layout.operator('object.sims4_fix_vertex_groups')
+        self.layout.label(text="5: Check for errors at")
+        self.layout.label(text="the bottom of the screen")
+    
+    
+
 
 def register():
-    bpy.utils.register_class(Sims4Importer)
-    bpy.types.VIEW3D_MT_object.append(menu_func)
+    bpy.utils.register_class(OBJECT_OT_Sims4Importer)
+    bpy.utils.register_class(VIEW3D_PT_Sims4Importer)
 
 def unregister():
-    bpy.utils.unregister_class(Sims4Importer)
+    bpy.utils.unregister_class(OBJECT_OT_Sims4Importer)
+    bpy.utils.unregister_class(VIEW3D_PT_Sims4Importer)
 
 if __name__ == "__main__":
     register()
@@ -262,3 +277,9 @@ if __name__ == "__main__":
 #                self.print( "beaning" )
 #                vgroup_names[id] = "b__Head__beaned"
 #                self.print( vgroup_names[id] )
+#
+#
+#
+#
+def menu_func(self, context):
+    self.layout.operator(ObjectCursorArray.bl_idname)
