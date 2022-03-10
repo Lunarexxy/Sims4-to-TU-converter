@@ -216,7 +216,6 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         self.merge_groups("spine_02", "b__CAS_R_Breast__")
                     
         
-        
         self.report({'INFO'}, 'SUCCESS: Done!')
         return {'FINISHED'}
 
@@ -227,11 +226,11 @@ class VIEW3D_PT_Sims4Importer(bpy.types.Panel):
     bl_label = 'Sims 4 to Tower Unite'
     
     def draw(self, context):
-        self.layout.label(text="1: Import model")
-        self.layout.label(text="2: Delete rig (with X)")
+        self.layout.label(text="1: Import .dae model")
+        self.layout.label(text="2: Delete rig")
         self.layout.label(text="3: Select mesh")
         self.layout.label(text='4: Press "Fix Vertex Groups"')
-        self.layout.operator('object.sims4_fix_vertex_groups')
+        self.layout.operator('object.sims4_fix_vertex_groups', text="Fix Vertex Groups", icon="FUND")
         self.layout.label(text="5: Check for errors at")
         self.layout.label(text="the bottom of the screen")
     
