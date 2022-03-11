@@ -1,5 +1,5 @@
-# Sims4 to Tower Unite converter
- Automates the process of merging/renaming vertex groups to fit Tower Unite's armature in Blender. It relies on the .dae models exported by [TS4-SimsRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! The settings I use when exporting are *"Solid and glass meshes and textures"* and *"Clean DAE mesh"*.
+# Sims 4 to Tower Unite converter
+ Automates the process of merging/renaming Sims 4 vertex groups to fit Tower Unite's armature in Blender. It relies on the .dae models exported by [TS4-SimsRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! The settings I use when exporting are *"Solid and glass meshes and textures"* and *"Clean DAE mesh"*.
  
  *(i have no idea if .obj files would work too, never tried! Have fun being a pioneer if you want~)*
  
