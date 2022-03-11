@@ -3,7 +3,7 @@
  
  *(i have no idea if .obj files would work too, never tried! Have fun being a pioneer if you want~)*
  
- Also keep in mind that Tower Unite currently has a [30,000 vertex limit.](https://towerunite.com/sdk/rules) If your model has more vertices than this, many players might not be able to see it in-game! Very detailed things, like modded clothes and hair, might push you over the limit, but the vanilla Sims 4 choices are usually okay.
+ Also keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on player models. If your model has more vertices than this, many players might not be able to see it in-game! Very detailed things, like modded clothes and hair, might push you over the limit, but the vanilla and DLC choices are usually okay.
 
 ## How to install
 * Download the **[Sims4_to_TU_converter.py](https://raw.githubusercontent.com/Lunarexxy/Sims4-to-TU-converter/main/Sims4_to_TU_converter.py)** file *(Right-click the page and Save As, anywhere on your machine)*
