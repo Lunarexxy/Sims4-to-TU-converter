@@ -211,6 +211,8 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         self.merge_groups("upperarm_r", "b__R_ShoulderTwist__")
         self.merge_groups("thigh_l", "b__L_ThighTwist__")
         self.merge_groups("thigh_r", "b__R_ThighTwist__")
+        self.merge_groups("thigh_l", "b__L_Skirt__")
+        self.merge_groups("thigh_r", "b__R_Skirt__")
         self.merge_groups("spine_02", "b__CAS_L_Breast__")
         self.merge_groups("spine_02", "b__CAS_R_Breast__")
                     
