@@ -15,7 +15,7 @@
 * If it succeeded, you should now have a "Sims 4" button in the sidebar. Click it to see what to do next.
 
 ## Commissioning
-No idea how to use Blender to fix up your Sim for Tower Unite? Or would you prefer to have someone more experienced go over it with you? I've imported several Sims by now, so I've got a decent grasp of the process by now!
+No idea how to use Blender to fix up your Sim for Tower Unite? Or would you prefer to have someone more experienced go over it with you? I've imported several Sims by now, so I've got a decent grasp of the process!
 
 Send me a DM on [my Twitter](https://twitter.com/Lunarexxy), and I'll get your Sim into Tower Unite!
 
