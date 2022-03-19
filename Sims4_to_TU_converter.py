@@ -69,56 +69,59 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
     ["b__R_Pinky2__", "pinky_03_r"]
     ]
     
-    # Vertex groups to be merged (actually not used, but useful to keep as a guide)
-    merge_list = [
-    ["head", "b__CAS_LowerMouthArea__"],
-    ["head", "b__CAS_JawComp__"],
-    ["head", "b__CAS_UpperMouthArea__"],
-    ["head", "b__R_Mouth__"],
-    ["head", "b__CAS_Chin__"],
-    ["head", "b__L_Mouth__"],
-    ["head", "b__LoLip__"],
-    ["head", "b__R_LoLip__"],
-    ["head", "b__L_LoLip__"],
-    ["head", "b__UpLip__"],
-    ["head", "b__L_UpLip__"],
-    ["head", "b__R_UpLip__"],
-    ["head", "b__R_Cheek__"],
-    ["head", "b__Jaw__"],
-    ["head", "b__L_Cheek__"],
-    ["head", "b__L_Squint__"],
-    ["head", "b__L_OutBrow__"],
-    ["head", "b__CAS_NoseArea__"],
-    ["head", "b__CAS_L_EyeScale__"],
-    ["head", "b__L_LoLid__"],
-    ["head", "b__CAS_L_Nostril__"],
-    ["head", "b__CAS_R_Nostril__"],
-    ["head", "b__CAS_NoseBridge__"],
-    ["head", "b__CAS_NoseTip__"],
-    ["head", "b__L_InBrow__"],
-    ["head", "b__L_UpLid__"],
-    ["head", "b__L_MidBrow__"],
-    ["head", "b__CAS_L_EyeArea__"],
-    ["head", "b__R_InBrow__"],
-    ["head", "b__R_MidBrow__"],
-    ["head", "b__R_OutBrow__"],
-    ["head", "b__CAS_R_EyeArea__"],
-    ["head", "b__CAS_R_EyeScale__"],
-    ["head", "b__R_UpLid__"],
-    ["head", "b__R_Squint__"],
-    ["head", "b__R_LoLid__"],
-    ["head", "b__R_Eye__"],
-    ["head", "b__L_Eye__"],
-    ["lowerarm_l", "b__L_ForearmTwist__"],
-    ["lowerarm_r", "b__R_ForearmTwist__"],
-    ["lowerarm_l", "b__L_Elbow__"],
-    ["lowerarm_r", "b__R_Elbow__"],
-    ["upperarm_l", "b__L_ShoulderTwist__"],
-    ["upperarm_r", "b__R_ShoulderTwist__"],
-    ["thigh_l", "b__L_ThighTwist__"],
-    ["thigh_r", "b__R_ThighTwist__"],
-    ["spine_02", "b__CAS_L_Breast__"],
-    ["spine_02", "b__CAS_R_Breast__"]]
+    # Vertex groups to be merged
+    # (not actually used, but it was useful to keep as a guide)
+    # (see the giant unrolled loop below, in execute(), for where to add new vertex groups that need merging)
+    #merge_list = [
+    #["head", "b__CAS_LowerMouthArea__"],
+    #["head", "b__CAS_JawComp__"],
+    #["head", "b__CAS_UpperMouthArea__"],
+    #["head", "b__R_Mouth__"],
+    #["head", "b__CAS_Chin__"],
+    #["head", "b__L_Mouth__"],
+    #["head", "b__LoLip__"],
+    #["head", "b__R_LoLip__"],
+    #["head", "b__L_LoLip__"],
+    #["head", "b__UpLip__"],
+    #["head", "b__L_UpLip__"],
+    #["head", "b__R_UpLip__"],
+    #["head", "b__R_Cheek__"],
+    #["head", "b__Jaw__"],
+    #["head", "b__L_Cheek__"],
+    #["head", "b__L_Squint__"],
+    #["head", "b__L_OutBrow__"],
+    #["head", "b__CAS_NoseArea__"],
+    #["head", "b__CAS_L_EyeScale__"],
+    #["head", "b__L_LoLid__"],
+    #["head", "b__CAS_L_Nostril__"],
+    #["head", "b__CAS_R_Nostril__"],
+    #["head", "b__CAS_NoseBridge__"],
+    #["head", "b__CAS_NoseTip__"],
+    #["head", "b__L_InBrow__"],
+    #["head", "b__L_UpLid__"],
+    #["head", "b__L_MidBrow__"],
+    #["head", "b__CAS_L_EyeArea__"],
+    #["head", "b__R_InBrow__"],
+    #["head", "b__R_MidBrow__"],
+    #["head", "b__R_OutBrow__"],
+    #["head", "b__CAS_R_EyeArea__"],
+    #["head", "b__CAS_R_EyeScale__"],
+    #["head", "b__R_UpLid__"],
+    #["head", "b__R_Squint__"],
+    #["head", "b__R_LoLid__"],
+    #["head", "b__R_Eye__"],
+    #["head", "b__L_Eye__"],
+    #["head", "b__CAS_Glasses__"],
+    #["lowerarm_l", "b__L_ForearmTwist__"],
+    #["lowerarm_r", "b__R_ForearmTwist__"],
+    #["lowerarm_l", "b__L_Elbow__"],
+    #["lowerarm_r", "b__R_Elbow__"],
+    #["upperarm_l", "b__L_ShoulderTwist__"],
+    #["upperarm_r", "b__R_ShoulderTwist__"],
+    #["thigh_l", "b__L_ThighTwist__"],
+    #["thigh_r", "b__R_ThighTwist__"],
+    #["spine_02", "b__CAS_L_Breast__"],
+    #["spine_02", "b__CAS_R_Breast__"]]
 
     def debug(self, message):
         self.report({'INFO'}, message)
@@ -203,6 +206,7 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         self.merge_groups("head", "b__R_LoLid__")
         self.merge_groups("head", "b__R_Eye__")
         self.merge_groups("head", "b__L_Eye__")
+        self.merge_groups("head", "b__CAS_Glasses__")
         self.merge_groups("lowerarm_l", "b__L_ForearmTwist__")
         self.merge_groups("lowerarm_r", "b__R_ForearmTwist__")
         self.merge_groups("lowerarm_l", "b__L_Elbow__")
