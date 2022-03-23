@@ -5,7 +5,7 @@
  
  *(i have no idea if .obj files would work too, never tried! Have fun being a pioneer if you want~)*
  
- Also keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on player models. If your model has more vertices than this, many players might not be able to see it in-game! Very detailed things, like modded clothes and hair, might push you over the limit, but the vanilla and DLC choices are usually okay.
+ Also keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on player models. If your model has more vertices than this, many players might not be able to see it in-game! Very detailed things, like modded clothes and hair, might push you over the limit, but the vanilla and DLC choices are usually okay. Tower Unite may also add vertices when importing, for some reason, so be mindful of that.
 
 ## How to install
 * Download the **[Sims4_to_TU_converter.py](https://raw.githubusercontent.com/Lunarexxy/Sims4-to-TU-converter/main/Sims4_to_TU_converter.py)** file *(Right-click and Save As, anywhere on your machine)*
@@ -20,8 +20,8 @@
 
 ![Instructions for how to use the SimRipper tool](https://i.imgur.com/yXaI3mX.png)
 
-## How to do everything else
-I'm planning on writing a full guide to the process of pulling Sims 4 models into Tower Unite, covering what I've learned so far, and writing it for people who have minimal Blender experience. That way you can do it yourself, if you want. I'll add more info here if I finally get around to that.
+## How to do everything else (Work in progress!)
+I'm planning on writing a full guide to the process of rigging the Sims 4 models and importing them into Tower Unite. It'll cover what I've learned so far, and be written for people who have minimal Blender experience. That way you can do it yourself, if you want. I'll add more info here if I finally get around to that.
 
 *(no promises i'll complete it because ADHD, but people keep being interested)*
 
@@ -36,3 +36,10 @@ Send me a DM on [my Twitter](https://twitter.com/Lunarexxy), and I'll do my best
 This is my first Blender add-on, so it might be a bit janky, but it seems to work!
 
 Please report bugs and suggest improvements, if you have any 💖
+
+## Big thanks to
+
+* Lina, for showing me the SimRipper tool, and being the first to ask if I could import her Sim, which directly led to the creation of this script.
+* Josh W, for making a guide in 2018 on [how to import models into Tower Unite](https://www.youtube.com/watch?v=aYnYWDALONI) (I learned the essential steps from this)
+* Redoo, Skullasaurus, Laurie, and others, for offering many different Sim models to learn from and practice on.
+* [Kiki](https://www.twitch.tv/KikiTheGeeky), for working on additional guides on how to rig the characters in Blender. I'll link them here when they're ready!
