@@ -21,7 +21,7 @@
 ![Instructions for how to use the SimRipper tool](https://i.imgur.com/yXaI3mX.png)
 
 ## How to do everything else
-I'm planning on writing a full guide to the process of pulling Sims 4 models into Tower Unite, covering what I've learned so far, and writing it for people who have zero Blender experience. That way you can do it yourself, if you want. I'll add more info here if I finally get around to that.
+I'm planning on writing a full guide to the process of pulling Sims 4 models into Tower Unite, covering what I've learned so far, and writing it for people who have minimal Blender experience. That way you can do it yourself, if you want. I'll add more info here if I finally get around to that.
 
 *(no promises i'll complete it because ADHD, but people keep being interested)*
 
