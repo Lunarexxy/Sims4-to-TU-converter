@@ -39,7 +39,10 @@ Please report bugs and suggest improvements, if you have any 💖
 
 ## Big thanks to
 
-* Lina, for showing me the SimRipper tool, and being the first to ask if I could import her Sim, which directly led to the creation of this script.
-* Josh W, for making a guide in 2018 on [how to import models into Tower Unite](https://www.youtube.com/watch?v=aYnYWDALONI) (I learned the essential steps from this)
-* Redoo, Skullasaurus, Laurie, and others, for offering many different Sim models to learn from and practice on.
-* [Kiki](https://www.twitch.tv/KikiTheGeeky), for working on additional guides on how to rig the characters in Blender. I'll link them here when they're ready!
+*Lina*, for showing me the SimRipper tool, and being the first to ask if I could import her Sim, which directly led to the creation of this script.
+
+*Josh W*, for making a guide in 2018 on [how to import models into Tower Unite](https://www.youtube.com/watch?v=aYnYWDALONI) (I learned the essential steps from this)
+
+*Redoo*, *Skullasaurus*, *Laurie*, and others, for offering many different Sim models to learn from and practice on.
+
+[*Kiki*](https://www.twitch.tv/KikiTheGeeky), for working on additional guides on how to rig the characters in Blender. I'll link them here when they're ready!
