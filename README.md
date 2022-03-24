@@ -8,10 +8,10 @@
  Also keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on player models. If your model has more vertices than this, many players might not be able to see it in-game! Very detailed things, like modded clothes and hair, might push you over the limit, but the vanilla and DLC choices are usually okay. Tower Unite may also add vertices when importing, for some reason, so be mindful of that.
 
 ## How to install
-* Download the **[Sims4_to_TU_converter.py](https://raw.githubusercontent.com/Lunarexxy/Sims4-to-TU-converter/main/Sims4_to_TU_converter.py)** file *(Right-click and Save As, anywhere on your machine)*
-* Open Blender 2.80 or later *(last tested on 3.1.0)*
+* Download the latest **[Sims4_to_TU_converter.zip](https://github.com/Lunarexxy/Sims4-to-TU-converter/releases/tag/latest)** file
+* Open Blender 2.80 or later *(last tested on 3.1.0, but will likely work on later versions too)*
 * Go to Edit -> Preferences -> Add-ons
-* Press the Install button and select the downloaded file
+* Press the Install button and select the downloaded .zip file
 * Make sure the little box is checked, to the left of the addon name, to enable it
 * Hover your cursor over the 3D viewport, and press N to pop out the sidebar
 * If it succeeded, you should now have a "Sims 4" button in the sidebar. Click it to see what to do next.
