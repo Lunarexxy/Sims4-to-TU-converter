@@ -20,10 +20,13 @@
 
 ![Instructions for how to use the SimRipper tool](https://i.imgur.com/yXaI3mX.png)
 
-## How to do everything else (Work in progress!)
-I'm planning on writing a full guide to the process of rigging the Sims 4 models and importing them into Tower Unite. It'll cover what I've learned so far, and be written for people who have minimal Blender experience. That way you can do it yourself, if you want. I'll add more info here if I finally get around to that.
+## How to do everything else
 
-*(no promises i'll complete it because ADHD, but people keep being interested)*
+[KikiTheGeeky](https://kikithegeeky.carrd.co/) has written [this guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) showing how to put your Sims 4 model into Tower Unite using this tool! (Thank you!!)
+
+I'm also planning on writing a more comprehensive guide to the process of rigging the Sims 4 models. It'll cover what I've learned so far, and how to fix common issues with the models.
+
+*(no promises i'll complete it because ADHD, but people keep being interested!)*
 
 ## Commissioning
 No idea how to use Blender to fix up your Sim for Tower Unite? Or would you prefer to have someone more experienced go over it with you? I've imported several Sims by now, so I've got a decent grasp of the process!
@@ -47,4 +50,4 @@ Please report bugs and suggest improvements, if you have any 💖
 
 *Redoo*, *Skullasaurus*, *Laurie*, and others, for offering many different Sim models to learn from and practice on.
 
-[*Kiki*](https://kikithegeeky.carrd.co/), for working on additional guides on how to rig the characters in Blender. I'll link them here when they're ready!
+[*Kiki*](https://kikithegeeky.carrd.co/), for writing a [full guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) on how to take the ripped models, fix them up, and import them into Tower Unite.
