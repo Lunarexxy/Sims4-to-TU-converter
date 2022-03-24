@@ -13,7 +13,7 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
     bl_label = "Fix Vertex Groups" # should be what's shown in the f3 menu
     bl_options = {'REGISTER', 'UNDO'} # apparently makes it work with the undo system
     
-    # Vertex groups to be renamed
+    # Vertex groups to be renamed, to match the names that Tower Unite expects.
     rename_list = [
     ["b__Head__","head"],
     ["b__Neck__","neck_01"],
@@ -123,11 +123,11 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
     #["spine_02", "b__CAS_L_Breast__"],
     #["spine_02", "b__CAS_R_Breast__"]]
 
+    # having to add "{'INFO'}, " to every print call was annoying, lol
     def debug(self, message):
         self.report({'INFO'}, message)
     
     # Merges group_b into group_a, leaving only group_a.
-    # Is it a bad idea to do this while iterating? Could just unroll it, whatever
     def merge_groups(self, group_a_name, group_b_name):
         obj = bpy.context.active_object
         if group_a_name in obj.vertex_groups and group_b_name in obj.vertex_groups:
@@ -155,6 +155,7 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
             self.debug("FAILED: There's currently a modifier named VertexWeightMix on the model. Can't run script safely.")
             return {'CANCELLED'}
         if "Armature" in obj.modifiers:
+            # The user never sees these messages when pressing the button, but they're useful when running from console
             self.debug("Deleting the original armature.")
             self.debug("(If you haven't parented the mesh to the TU Armature yet, this is fine.)")
             bpy.ops.object.modifier_remove(modifier="Armature")
