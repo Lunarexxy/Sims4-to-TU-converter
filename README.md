@@ -1,9 +1,7 @@
 # Sims 4 to Tower Unite converter
- This Blender script makes it easier to import Sims 4 models into Tower Unite, by automating the process of merging/renaming Sims 4 vertex groups to fit Tower Unite's armature in Blender.
+ This Blender script makes it easier to import Sims 4 models into Tower Unite, by automating the process of merging/renaming Sims 4 vertex groups to fit [Tower Unite's Blender Suite]([Tower Unite Blender Suite](https://forums.pixeltailgames.com/t/tower-unite-blender-tools-1-2-4/41541)) armature.
  
- It relies on the .dae models exported by [TS4-SimRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! The settings I use when exporting from TS4SimRipper are *"Single mesh and texture"* and *"Clean DAE mesh"*. You can use the other mesh settings as well, but I found that having multiple meshes often just made things harder in the long run.
- 
- *(i have no idea if .obj files would work too, never tried! Have fun being a pioneer if you want~)*
+ It relies on the .dae models exported by [TS4-SimRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! The settings I use when exporting from TS4SimRipper are *"Single mesh and texture"* and *"Clean DAE mesh"*. You can use the other mesh settings as well, but I found that having multiple meshes often just made things harder in the long run. *(I have no idea if .obj files would work too, never tried! Have fun being a pioneer if you want~)*
  
  Also keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on player models. If your model has more vertices than this, many players might not be able to see it in-game! Very detailed things, like modded clothes and hair, might push you over the limit, but the vanilla and DLC choices are usually okay. Tower Unite may also add vertices when importing, for some reason, so be mindful of that.
 
