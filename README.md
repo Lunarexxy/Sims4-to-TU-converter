@@ -1,9 +1,9 @@
 # Sims 4 to Tower Unite converter
  This Blender script makes it easier to import Sims 4 models into Tower Unite, by automating the process of merging/renaming Sims 4 vertex groups to fit [Tower Unite's Blender Suite](https://forums.pixeltailgames.com/t/tower-unite-blender-tools-1-2-4/41541) armature.
  
- It relies on the .dae models exported by [TS4-SimRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! The settings I use when exporting from TS4SimRipper are *"Single mesh and texture"* and *"Clean DAE mesh"*. You can use the other mesh settings as well, but I found that having multiple meshes often just made things harder in the long run. *(I have no idea if .obj files would work too, never tried! Have fun being a pioneer if you want~)*
+ It relies on the .dae models exported by [TS4-SimRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! See the image below for which settings to use.
  
- Also keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on player models. If your model has more vertices than this, many players might not be able to see it in-game! Very detailed things, like modded clothes and hair, might push you over the limit, but the vanilla and DLC choices are usually okay. Tower Unite may also add vertices when importing, for some reason, so be mindful of that.
+ Keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on uploading player models. The vanilla and DLC options from Sims 4 usually work fine, but modded content tends to push it over the limit. Tower Unite may also add vertices when importing, for some reason.
 
 ## How to install
 * Download the latest **[Sims4_to_TU_converter.zip](https://github.com/Lunarexxy/Sims4-to-TU-converter/releases/tag/latest)** file
@@ -16,15 +16,17 @@
 
 ## How to use the SimRipper tool
 
+*(Requires Sims 4 to be installed on your machine, along with all the DLC and/or mods your Sim uses!)*
+
 ![Instructions for how to use the SimRipper tool](https://i.imgur.com/yXaI3mX.png)
+
+*(While "Single mesh and texture" is recommended, the other two options will also work. They just tend to require some extra effort.)*
 
 ## How to do everything else
 
 [KikiTheGeeky](https://kikithegeeky.carrd.co/) has written [this guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) showing how to put your Sims 4 model into Tower Unite using this tool! (Thank you!!)
 
-I'm also planning on writing a more comprehensive guide to the process of rigging the Sims 4 models. It'll cover what I've learned so far, and how to fix common issues with the models.
-
-*(no promises i'll complete it because ADHD, but people keep being interested!)*
+I'm also planning on writing a more comprehensive guide to the process of rigging the Sims 4 models. It'll cover what I've learned so far, and how to fix common issues with the models. *(no promises i'll complete it because ADHD, but people keep being interested!)*
 
 ## Commissioning
 No idea how to use Blender to fix up your Sim for Tower Unite? Or would you prefer to have someone more experienced go over it with you? I've imported several Sims by now, so I've got a decent grasp of the process!
