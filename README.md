@@ -28,13 +28,6 @@
 
 I'm also planning on writing a more comprehensive guide to the process of rigging the Sims 4 models. It'll cover what I've learned so far, and how to fix common issues with the models. *(no promises i'll complete it because ADHD, but people keep being interested!)*
 
-## Commissioning
-No idea how to use Blender to fix up your Sim for Tower Unite? Or would you prefer to have someone more experienced go over it with you? I've imported several Sims by now, so I've got a decent grasp of the process!
-
-Send me a DM on [my Twitter](https://twitter.com/Lunarexxy), and I'll do my best to get your Sim into Tower Unite!
-
-(It's free, as long as I don't get overwhelmed with requests! I can even give you the final model, so you can retain ownership and put it on the workshop yourself.)
-
 ## Contributing
 This is my first Blender add-on, so it might be a bit janky, but it seems to work!
 
