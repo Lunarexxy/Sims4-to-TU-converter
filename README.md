@@ -1,7 +1,7 @@
 # Sims 4 to Tower Unite converter
  This Blender script makes it easier to import Sims 4 models into Tower Unite, by automating the process of merging/renaming Sims 4 vertex groups to fit [Tower Unite's Blender Suite](https://forums.pixeltailgames.com/t/tower-unite-blender-tools-1-2-4/41541) armature.
  
- It relies on the .dae models exported by [TS4-SimRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! See the image below for which settings to use.
+ It relies on the .dae models exported by the [TS4-SimRipper](https://github.com/thepancake1/TS4-SimRipper), so please use that! See the image below for which settings to use. (An alternative version of the tool can be downloaded [here](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), in case the previous one doesn't work.)
  
  Keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on uploading player models. The vanilla and DLC options from Sims 4 usually work fine, but modded content tends to push it over the limit. Tower Unite may also add vertices when importing, for some reason.
 
