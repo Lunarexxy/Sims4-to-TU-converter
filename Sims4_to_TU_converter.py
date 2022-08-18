@@ -150,6 +150,9 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         if obj is None or obj.type != 'MESH' or obj.name == 'rig':
             self.debug('FAILED: Mesh is not selected. Did you remember to delete the rig object with X?')
             return {'CANCELLED'}
+        if len(obj.vertex_groups) == 0:
+            self.debug("FAILED: Selected mesh has no vertex groups.")
+            return {'CANCELLED'}
         # (since i apparently can't set the name, i have to rely on new modifiers being called "VertexWeightMix")
         if "VertexWeightMix" in obj.modifiers: 
             self.debug("FAILED: There's currently a modifier named VertexWeightMix on the model. Can't run script safely.")
