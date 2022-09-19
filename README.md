@@ -5,14 +5,14 @@
  
  Keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on uploading player models. The vanilla and DLC options from Sims 4 usually work fine, but modded content tends to push it over the limit. Tower Unite may also add vertices when importing, for some reason.
 
-## How to install
-* Download the latest **[Sims4_to_TU_converter.zip](https://github.com/Lunarexxy/Sims4-to-TU-converter/releases/tag/latest)** file
-* Open Blender 2.80 or later *(last tested on 3.2.0, but will likely work on later versions too)*
+## How to install the script
+* Download the latest **[Sims4_to_TU_converter.zip](https://github.com/Lunarexxy/Sims4-to-TU-converter/releases)** file
+* Open Blender 2.80 or later *(last tested on 3.2.2, but will likely work on later versions too)*
 * Go to Edit -> Preferences -> Add-ons
 * Press the Install button and select the downloaded .zip file
 * Make sure the little box is checked, to the left of the addon name, to enable it
 * Hover your cursor over the 3D viewport, and press N to pop out the sidebar
-* If it succeeded, you should now have a "Sims 4" button in the sidebar. Click it to see what to do next.
+* If it succeeded, you should now have a "Sims 4" button in the sidebar.
 
 ## How to use the SimRipper tool
 
@@ -22,16 +22,24 @@
 
 *(While "Single mesh and texture" is recommended, the other two options will also work. They just tend to require some extra effort.)*
 
-## How to do everything else
+## How to make the model compatible with Tower Unite
 
-[KikiTheGeeky](https://kikithegeeky.carrd.co/) has written [this guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) showing how to put your Sims 4 model into Tower Unite using this tool! (Thank you!!)
+A comprehensive video guide on how to port models to Tower Unite can be found [here](https://www.youtube.com/watch?v=YUCr28T8K-s). 
 
-I'm also planning on writing a more comprehensive guide to the process of rigging the Sims 4 models. It'll cover what I've learned so far, and how to fix common issues with the models. *(no promises i'll complete it because ADHD, but people keep being interested!)*
+In the video above, the guide covers how to manually rename and merge vertex groups together to fit Tower Unite's requirements. This is the step that my script automates.
 
-## Contributing
+Simply select the model's mesh by clicking it, open the Sims 4 menu in the sidebar, and press the "Fix Vertex Groups" button. It will merge the extra vertex groups together and rename them all to fit Tower Unite's expectations. If the model is made up of multiple meshes, you'll need to do this for each one.
+
+![image](https://user-images.githubusercontent.com/8879206/191003661-315d4cb5-fcd2-434a-ba00-8020e0f20901.png)
+
+[KikiTheGeeky](https://kikithegeeky.carrd.co/) has also written [this text guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) showing how to put your Sims 4 model into Tower Unite using this tool! (Thank you!!)
+
+## Contributing and usage
 This is my first Blender add-on, so it might be a bit janky, but it seems to work!
 
 Please report bugs and suggest improvements, if you have any 💖
+
+You're also 100% free to copy and re-use this script for your own purposes, under the GPL 3.0 license.
 
 ## Big thanks to
 
@@ -39,8 +47,10 @@ Please report bugs and suggest improvements, if you have any 💖
 
 *Josh W*, for making a guide in 2018 on [how to import models into Tower Unite](https://www.youtube.com/watch?v=aYnYWDALONI) (I learned the essential steps from this)
 
-*CmarNYC* and *thepancake1*, for creating and maintaining the [SimRipper](https://github.com/thepancake1/TS4-SimRipper) tool.
+[*lime supplier*](https://www.youtube.com/c/limesupplier) for creating another [video guide](https://www.youtube.com/watch?v=YUCr28T8K-s) for Blender 2.8+ users, with additional helpful tips.
+
+*CmarNYC* and *thepancake1*, for creating and maintaining the [TS4 SimRipper Classic](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html) and [TS4 SimRipper](https://github.com/thepancake1/TS4-SimRipper) tools, respectively.
 
 *Redoo*, *Skullasaurus*, *Laurie*, and others, for offering many different Sim models to learn from and practice on.
 
-[*Kiki*](https://kikithegeeky.carrd.co/), for writing a [full guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) on how to take the ripped models, fix them up, and import them into Tower Unite.
+[*KawaiiEvil*](https://kawaiievilvt.carrd.co/), for writing a [text guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) on how to take the ripped models, fix them up, and import them into Tower Unite.
