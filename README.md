@@ -3,7 +3,7 @@
  
  It relies on the .dae models exported by the [TS4 SimRipper](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), so please use that! See the image below for which settings to use.
  
- Keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on uploading player models. The vanilla and DLC options from Sims 4 usually work fine, but modded content tends to push it over the limit. Tower Unite may also add vertices when importing, for some reason.
+ Keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on uploading player models. The vanilla and DLC options from Sims 4 usually work fine, but modded content tends to push it over the limit. Tower Unite may also add vertices when importing; this seems to be an Unreal Engine 4 quirk.
 
 ## How to install the script
 * Download the latest **[Sims4_to_TU_converter.zip](https://github.com/Lunarexxy/Sims4-to-TU-converter/releases)** file
