@@ -7,6 +7,15 @@ bl_info = {
 
 import bpy
 
+
+# If you seek to modify this script to automate renaming/merging vertex groups,
+# then you'll want to modify the rename_list variable, and a chunk of calls to
+# self.merge_groups() located in the execute() function.
+#
+# The reason merge_list isn't used for that is because Blender kept crashing.
+# No clue why.
+
+
 class OBJECT_OT_Sims4Importer(bpy.types.Operator):
     """Run this to make the model compatible with the Tower Unite Armature"""
     bl_idname = "object.sims4_fix_vertex_groups" # some unique internal id - can be called from console
@@ -148,7 +157,7 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         
         # Sanity checks
         if obj is None or obj.type != 'MESH' or obj.name == 'rig':
-            self.debug('FAILED: Mesh is not selected. Did you remember to delete the rig object with X?')
+            self.debug("FAILED: Mesh is not selected. Make sure you didn't select the rig by accident.")
             return {'CANCELLED'}
         if len(obj.vertex_groups) == 0:
             self.debug("FAILED: Selected mesh has no vertex groups.")
@@ -157,11 +166,6 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         if "VertexWeightMix" in obj.modifiers: 
             self.debug("FAILED: There's currently a modifier named VertexWeightMix on the model. Can't run script safely.")
             return {'CANCELLED'}
-        if "Armature" in obj.modifiers:
-            # The user never sees these messages when pressing the button, but they're useful when running from console
-            self.debug("Deleting the original armature.")
-            self.debug("(If you haven't parented the mesh to the TU Armature yet, this is fine.)")
-            bpy.ops.object.modifier_remove(modifier="Armature")
 
         # Replace names
         self.debug("Renaming vertex groups.")
