@@ -240,11 +240,10 @@ class VIEW3D_PT_Sims4Importer(bpy.types.Panel):
     
     def draw(self, context):
         self.layout.label(text="1: Import .dae model")
-        self.layout.label(text="2: Delete rig")
-        self.layout.label(text="3: Select mesh")
-        self.layout.label(text='4: Press "Fix Vertex Groups"')
+        self.layout.label(text="2: Select mesh")
+        self.layout.label(text='3: Press "Fix Vertex Groups"')
         self.layout.operator('object.sims4_fix_vertex_groups', text="Fix Vertex Groups", icon="FUND")
-        self.layout.label(text="5: Check for errors at")
+        self.layout.label(text="4: Check for errors at")
         self.layout.label(text="the bottom of the screen")
     
     
