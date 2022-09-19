@@ -1,7 +1,7 @@
 # Sims 4 to Tower Unite converter
  This Blender script makes it easier to import Sims 4 models into Tower Unite, by automating the process of merging/renaming Sims 4 vertex groups to fit [Tower Unite's Blender Suite](https://forums.pixeltailgames.com/t/tower-unite-blender-tools-1-2-4/41541) armature.
  
- It relies on the .dae models exported by the [TS4-SimRipper](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), so please use that! See the image below for which settings to use. _(Previously this linked to a version maintained by [thepancake1](https://github.com/thepancake1) but it seems to have been taken down. This should work the same though.)_
+ It relies on the .dae models exported by the [TS4 SimRipper](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), so please use that! See the image below for which settings to use.
  
  Keep in mind that Tower Unite currently has a [30,000 vertex limit](https://towerunite.com/sdk/rules) on uploading player models. The vanilla and DLC options from Sims 4 usually work fine, but modded content tends to push it over the limit. Tower Unite may also add vertices when importing, for some reason.
 
@@ -24,22 +24,22 @@
 
 ## How to make the model compatible with Tower Unite
 
-A comprehensive video guide on how to port models to Tower Unite can be found [here](https://www.youtube.com/watch?v=YUCr28T8K-s). 
+A comprehensive video guide on how to port models to Tower Unite can be found [here](https://www.youtube.com/watch?v=YUCr28T8K-s). I recommend watching it first.
 
-In the video above, the guide covers how to manually rename and merge vertex groups together to fit Tower Unite's requirements. This is the step that my script automates.
+The video covers how to manually rename and merge vertex groups to fit Tower Unite's requirements. This is the step that my script automates.
 
-Simply select the model's mesh by clicking it, open the Sims 4 menu in the sidebar, and press the "Fix Vertex Groups" button. It will merge the extra vertex groups together and rename them all to fit Tower Unite's expectations. If the model is made up of multiple meshes, you'll need to do this for each one.
+With the script, you simply select the model's mesh by clicking it, open the Sims 4 menu in the sidebar, and press the "Fix Vertex Groups" button. It will merge the extra vertex groups together and rename them to work with Tower Unite's armature. If the model is made up of multiple meshes, you'll need to do this for each one.
 
-![image](https://user-images.githubusercontent.com/8879206/191003661-315d4cb5-fcd2-434a-ba00-8020e0f20901.png)
+![image](https://user-images.githubusercontent.com/8879206/191010032-8f542018-375f-4087-a699-2b681f00c479.png)
 
-[KikiTheGeeky](https://kikithegeeky.carrd.co/) has also written [this text guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) showing how to put your Sims 4 model into Tower Unite using this tool! (Thank you!!)
+[*KawaiiEvil*](https://kawaiievilvt.carrd.co/) has also written [this text guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) showing how to put your Sims 4 model into Tower Unite using this tool! (Thank you!!)
 
 ## Contributing and usage
 This is my first Blender add-on, so it might be a bit janky, but it seems to work!
 
-Please report bugs and suggest improvements, if you have any 💖
+Please report bugs and suggest improvements, if you have any! 💖
 
-You're also 100% free to copy and re-use this script for your own purposes, under the GPL 3.0 license.
+You're also 100% free to copy, modify, and re-use this script for your own purposes, under the GPL 3.0 license.
 
 ## Big thanks to
 
