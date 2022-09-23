@@ -30,7 +30,7 @@ The video covers how to manually rename and merge vertex groups to fit Tower Uni
 
 With the script, you simply select the model's mesh by clicking it, open the Sims 4 menu in the sidebar, and press the "Fix Vertex Groups" button. It will merge the extra vertex groups together and rename them to work with Tower Unite's armature. If the model is made up of multiple meshes, you'll need to do this for each one.
 
-![image](https://user-images.githubusercontent.com/8879206/191010032-8f542018-375f-4087-a699-2b681f00c479.png)
+![image](https://user-images.githubusercontent.com/8879206/191913164-3cdb8ffc-d38c-483c-a7a0-6f1e910e98dc.png)
 
 [*KawaiiEvil*](https://kawaiievilvt.carrd.co/) has also written [this text guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) showing how to put your Sims 4 model into Tower Unite using this tool! (Thank you!!)
 
