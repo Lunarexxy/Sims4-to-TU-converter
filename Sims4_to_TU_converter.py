@@ -142,7 +142,7 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         if group_a_name in obj.vertex_groups and group_b_name in obj.vertex_groups:
             # Merge
             bpy.ops.object.modifier_add(type='VERTEX_WEIGHT_MIX')
-            obj.modifiers["VertexWeightMix"].mix_set = 'ALL'
+            obj.modifiers["VertexWeightMix"].mix_set = 'OR'
             obj.modifiers["VertexWeightMix"].mix_mode = 'ADD'
             obj.modifiers["VertexWeightMix"].vertex_group_a = group_a_name
             obj.modifiers["VertexWeightMix"].vertex_group_b = group_b_name
