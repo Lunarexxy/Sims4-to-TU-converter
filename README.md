@@ -20,7 +20,7 @@
 
 *(While "Single mesh and texture" is recommended, the other two options will also work. They just tend to require some extra effort.)*
 
-*(You can also set Texture Size to HQ if you want, it'll double the texture sizes, but it'll obviously make your model more expensive to load for others. It also doesn't usually make a big visual difference.)*
+*(You can also set Texture Size to HQ if you want, it'll double the texture sizes, but it'll obviously make your model slower to load for others. It also doesn't usually make a big visual difference.)*
 
 ## How to make the model compatible with Tower Unite
 
