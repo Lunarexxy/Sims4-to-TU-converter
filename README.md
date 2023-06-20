@@ -20,6 +20,8 @@
 
 *(While "Single mesh and texture" is recommended, the other two options will also work. They just tend to require some extra effort.)*
 
+*(You can also set Texture Size to HQ if you want, it'll double the texture sizes, but it'll obviously make your model more expensive to load for others. It also doesn't usually make a big visual difference.)*
+
 ## How to make the model compatible with Tower Unite
 
 A comprehensive video guide on how to port models to Tower Unite can be found [here](https://www.youtube.com/watch?v=YUCr28T8K-s). I recommend watching it first, as you'll need to learn these steps anyway. Part of the video covers how to manually rename and merge vertex groups to fit Tower Unite's requirements. This is the step that my script automates.
