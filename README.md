@@ -16,6 +16,8 @@
 
 *(Requires Sims 4 to be installed on your machine, along with all the DLC and/or mods your Sim uses!)*
 
+Create your Sim, save the game, download [TS4 SimRipper](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), then follow this guide:
+
 ![Instructions for how to use the SimRipper tool](https://i.imgur.com/yXaI3mX.png)
 
 *(While "Single mesh and texture" is recommended, the other two options will also work. They just tend to require some extra effort.)*
