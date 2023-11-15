@@ -7,7 +7,7 @@
 
 ## How to install the script
 * Download the latest **[Sims4_to_TU_converter.zip](https://github.com/Lunarexxy/Sims4-to-TU-converter/releases)** file
-* Open Blender 2.80 or later *(last tested on 4.0, but will likely work on later versions too)*
+* Open Blender 2.80 or later *(3.0 works too! Last tested on 4.0, but will likely work on later versions too)*
 * Go to Edit -> Preferences -> Add-ons
 * Press the Install button and select the downloaded .zip file
 * Make sure the little box is checked, to the left of the addon name, to enable it
