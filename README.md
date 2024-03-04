@@ -1,7 +1,9 @@
 # Sims 4 to Tower Unite converter
- This Blender script makes it easier to import Sims 4 models into Tower Unite, by automating the process of merging/renaming Sims 4 vertex groups to fit [Tower Unite's Blender Suite](https://forums.pixeltailgames.com/t/tower-unite-blender-tools-1-2-4/41541) armature. It saves you like 15-30 minutes of fiddly manual work.
+This Blender script makes it easier to import Sims 4 models into Tower Unite, by automating the process of merging/renaming Sims 4 vertex groups to fit [Tower Unite's Blender Suite](https://forums.pixeltailgames.com/t/tower-unite-blender-tools-1-2-4/41541) armature. It saves you like 15-30 minutes of fiddly manual work.
  
- It relies on the .dae models exported by the [TS4 SimRipper](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), so please use that! See the image below for which settings to use.
+It relies on the .dae models exported by the [TS4 SimRipper](https://sims4studio.com/thread/34354/ts4-sim-ripper), so please use that! See the image below for which settings to use.
+
+*(The TS4 SimRipper thread was originally [here](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), but its creator, CmarNYC, sadly passed away in October 2023, so updates are now made by community members. If the link above does not work, check this thread for updates.)*
 
 ## How to install the script
 * Download the latest **[Sims4_to_TU_converter.zip](https://github.com/Lunarexxy/Sims4-to-TU-converter/releases)** file
@@ -16,7 +18,7 @@
 
 *(Requires Sims 4 to be installed on your machine, along with all the DLC and/or mods your Sim uses!)*
 
-Create your Sim, save the game, download [TS4 SimRipper](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), then follow this guide:
+Create your Sim, save the game, download [TS4 SimRipper](https://sims4studio.com/thread/34354/ts4-sim-ripper), then follow this guide:
 
 ![Instructions for how to use the SimRipper tool](https://i.imgur.com/yXaI3mX.png)
 
@@ -55,7 +57,7 @@ You're also 100% free to copy, modify, and re-use this script for your own purpo
 
 [*Niko*](https://www.youtube.com/c/limesupplier) for creating another [video guide](https://www.youtube.com/watch?v=YUCr28T8K-s) for Blender 2.8+ users, with additional helpful tips.
 
-*CmarNYC* and *thepancake1*, for creating and maintaining the [TS4 SimRipper Classic](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html) and [TS4 SimRipper](https://github.com/thepancake1/TS4-SimRipper) tools, respectively.
+*CmarNYC*, *thepancake1*, and *andrew on Sims 4 Studio* for creating and maintaining the TS4 SimRipper tool.
 
 *Redoo*, *Skullasaurus*, *Laurie*, and others, for offering many different Sim models to learn from and practice on.
 
