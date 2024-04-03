@@ -229,7 +229,7 @@ class VIEW3D_PT_Sims4VertexGroupFixer(bpy.types.Panel):
 # This one's a work in progress.
 # Ideally we could have a single button handle the rigging of the entire model
 class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
-    """Run this to make the model compatible with the Tower Unite Armature"""
+    """Run this to automatically rig your model to the Tower Unite Armature"""
     bl_idname = "object.sims4_auto_rig" # some unique internal id - can be called from console
     bl_label = "Auto Rig" # should be what's shown in the f3 menu
     bl_options = {'REGISTER', 'UNDO'} # apparently makes it work with the undo system
