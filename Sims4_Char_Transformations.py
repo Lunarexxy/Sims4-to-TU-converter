@@ -1,7 +1,9 @@
 # This is a list of transformations that need to be performed on the sim, depending on the type of character.
+# These transformations are done in order to align the character's pose with the Tower Unite Armature's pose.
+# They are performed in order, so feel free to experiment with values that work better for you.
+#
 # Some of these transformations are performed on the armature, but a few affect the mesh itself.
-
-# The different transform types are "move", "rotate", "scale_mesh", "apply_pose", "delete_armature", "spawn_tu_rig".
+# The different transform types are "move", "rotate", "scale_mesh", "apply_pose", "delete_armature", "spawn_tu_rig", "fix_vertex_groups".
 #
 # "move" and "rotate" both act on the armature's current pose.
 # "move", "rotate", and "scale_mesh" all require an axis, either set to "global" or "local". They also require x, y, and z values to be set to numerical values.
@@ -27,7 +29,6 @@
 # TODO: I haven't received any characters like this to test on. May be the same as adult, not sure.
 Sims4Char_Female_Elder = []
 Sims4Char_Male_Elder = []
-
 
 Sims4Char_Female_Adult = [
 {transform_type:"rotate", bone_name:"b__R_UpperArm__", axis:"global", x:0.0, y:0.0, z:-5.0},
@@ -69,6 +70,7 @@ Sims4Char_Female_Adult = [
 {transform_type:"scale_mesh", axis:"global", x:112.0, y:112.0, z:112.0},
 {transform_type:"apply_scale"},
 {transform_type:"spawn_tu_rig", arms_raised_percent:51.5} # Admittedly I don't know the precise percentage, but there's a sweet spot I usually reach with the slider that works best with these values. Consider it a TODO: needs tweaking.
+{transform_type:"fix_vertex_groups"}
 
 ]
 
