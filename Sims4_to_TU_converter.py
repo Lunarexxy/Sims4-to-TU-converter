@@ -1,3 +1,10 @@
+# If you seek to modify this script to automate renaming/merging vertex groups,
+# then you'll want to modify the rename_list variable, as well as the merge_list variable.
+#
+# The rename list tries to create at least one version of each expected vertex group,
+# while the merge list is used for merging everything that remains into those new groups.
+
+
 bl_info = {
     "name": "Sims4 to Tower Unite Converter",
     "version": (1, 8),
@@ -8,14 +15,6 @@ bl_info = {
 }
 
 import bpy
-
-
-# If you seek to modify this script to automate renaming/merging vertex groups,
-# then you'll want to modify the rename_list variable, and a chunk of calls to
-# self.merge_groups() located in the execute() function.
-#
-# The reason merge_list isn't used for that is because Blender kept crashing.
-# No clue why.
 
 
 class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
