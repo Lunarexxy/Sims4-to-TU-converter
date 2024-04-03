@@ -39,6 +39,7 @@ Sims4Char_Female_Adult = [
 
 {transform_type:"rotate", bone_name:"b__R_Foot__", axis:"global", x:0.0, y:1.5, z:5.0},
 {transform_type:"rotate", bone_name:"b__L_Foot__", axis:"global", x:0.0, y:-1.5, z:5.0},
+# Rotating the feet and thighs has pushed the feet into the ground slightly. This nudges them back up. It should pretty much imperceptible either way, though.
 {transform_type:"move", bone_name:"b__R_Foot__", axis:"global", x:0.0, y:0.0, z:0.062},
 {transform_type:"move", bone_name:"b__L_Foot__", axis:"global", x:0.0, y:0.0, z:0.062},
 
@@ -69,7 +70,7 @@ Sims4Char_Female_Adult = [
 
 {transform_type:"scale_mesh", axis:"global", x:112.0, y:112.0, z:112.0},
 {transform_type:"apply_scale"},
-{transform_type:"spawn_tu_rig", arms_raised_percent:51.5} # Admittedly I don't know the precise percentage, but there's a sweet spot I usually reach with the slider that works best with these values. Consider it a TODO: needs tweaking.
+{transform_type:"spawn_tu_rig", arms_raised_percent:51.5}, # Admittedly I don't know the precise percentage, but there's a sweet spot I usually reach with the slider that works best with these values. Consider it a TODO: needs tweaking.
 {transform_type:"fix_vertex_groups"}
 
 ]
