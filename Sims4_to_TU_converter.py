@@ -240,7 +240,11 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
     
     def execute(self, context):
         obj = context.active_object
-    
+        
+        # Armature sanity checks
+        if obj is None or obj.type != 'ARMATURE' or obj.name != 'rig':
+            self.debug("FAILED: Armature not selected. Make sure you selected the item called 'rig'.
+        
         # The preferred setup would be:
         # User selects the rig
         # Script gets a reference to the rig and the child mesh(es)
@@ -249,6 +253,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
         # Script deletes the rig
         # Script scales each child mesh based on pre-defined values, which may differ by model age and gender.
         # Script applies the scale.
+        # Script optionally adds the normal map from the same directory as the diffuse map.
         # Script spawns the Tower Unite Armature, if possible, and if the addon is installed, with the right arm height (may also differ by model age and gender)
         # Script adds Armature modifier to each child mesh and points it to the TU Armature
         # Script calls object.sims4_fix_vertex_groups on each child mesh.
