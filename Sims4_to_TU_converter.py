@@ -18,7 +18,7 @@ import bpy
 # No clue why.
 
 
-class OBJECT_OT_Sims4Importer(bpy.types.Operator):
+class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
     """Run this to make the model compatible with the Tower Unite Armature"""
     bl_idname = "object.sims4_fix_vertex_groups" # some unique internal id - can be called from console
     bl_label = "Fix Vertex Groups" # should be what's shown in the f3 menu
@@ -234,7 +234,7 @@ class OBJECT_OT_Sims4Importer(bpy.types.Operator):
         self.report({'INFO'}, 'SUCCESS: Done!')
         return {'FINISHED'}
 
-class VIEW3D_PT_Sims4Importer(bpy.types.Panel):
+class VIEW3D_PT_Sims4VertexGroupFixer(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = 'Sims 4'
@@ -252,12 +252,12 @@ class VIEW3D_PT_Sims4Importer(bpy.types.Panel):
 
 
 def register():
-    bpy.utils.register_class(OBJECT_OT_Sims4Importer)
-    bpy.utils.register_class(VIEW3D_PT_Sims4Importer)
+    bpy.utils.register_class(OBJECT_OT_Sims4VertexGroupFixer)
+    bpy.utils.register_class(VIEW3D_PT_Sims4VertexGroupFixer)
 
 def unregister():
-    bpy.utils.unregister_class(OBJECT_OT_Sims4Importer)
-    bpy.utils.unregister_class(VIEW3D_PT_Sims4Importer)
+    bpy.utils.unregister_class(OBJECT_OT_Sims4VertexGroupFixer)
+    bpy.utils.unregister_class(VIEW3D_PT_Sims4VertexGroupFixer)
 
 if __name__ == "__main__":
     register()
