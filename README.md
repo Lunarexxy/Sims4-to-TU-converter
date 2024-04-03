@@ -7,7 +7,7 @@ It relies on the .dae models exported by the [TS4 SimRipper](https://sims4studio
 
 ## What does the script do?
 
-It renames the Sims 4 vertex groups to Tower Unite vertex groups. (and merges any that aren't needed)
+It renames the Sims 4 vertex groups to Tower Unite vertex groups. (and merges any that aren't needed into the ones that are)
 
 ![image](https://github.com/Lunarexxy/Sims4-to-TU-converter/assets/8879206/7100fb6f-cace-401f-87e0-e80f82a9c02d)
 
