@@ -1,6 +1,6 @@
 bl_info = {
     "name": "Sims4 to Tower Unite Converter",
-    "version": (1, 7),
+    "version": (1, 8),
     "blender": (2, 80, 0),
     "category": "Object",
     "author": "Lunarexxy",
@@ -207,7 +207,34 @@ class VIEW3D_PT_Sims4VertexGroupFixer(bpy.types.Panel):
         self.layout.label(text="4: Check for errors at")
         self.layout.label(text="the bottom of the screen")
     
+
+# This one's a work in progress.
+# Ideally we could have a single button handle the rigging of the entire model
+class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
+    """Run this to make the model compatible with the Tower Unite Armature"""
+    bl_idname = "object.sims4_auto_rig" # some unique internal id - can be called from console
+    bl_label = "Auto Rig" # should be what's shown in the f3 menu
+    bl_options = {'REGISTER', 'UNDO'} # apparently makes it work with the undo system
     
+     # having to add "{'INFO'}, " to every print call was annoying, lol
+    def debug(self, message):
+        self.report({'INFO'}, message)
+    
+    def execute(self, context):
+        obj = context.active_object
+    
+        # The preferred setup would be:
+        # User selects the rig
+        # Script gets a reference to the rig and the child mesh(es)
+        # Script poses the rig based on pre-defined values, which may differ by model age and gender.
+        # Script applies the Armature modifier on each child mesh
+        # Script deletes the rig
+        # Script scales each child mesh based on pre-defined values, which may differ by model age and gender.
+        # Script applies the scale.
+        # Script spawns the Tower Unite Armature, if possible, and if the addon is installed, with the right arm height (may also differ by model age and gender)
+        # Script adds Armature modifier to each child mesh and points it to the TU Armature
+        # Script calls object.sims4_fix_vertex_groups on each child mesh.
+        # User exports the model.
 
 
 def register():
