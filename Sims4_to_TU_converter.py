@@ -142,7 +142,15 @@ class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
     # Merges group_b into group_a, leaving only group_a.
     def merge_groups(self, group_a_name, group_b_name):
         obj = bpy.context.active_object
-        if group_a_name in obj.vertex_groups and group_b_name in obj.vertex_groups:
+        if group_b_name in obj.vertex_groups:
+            # If group_a doesn't exist but group_b does, create an empty group_a to merge into.
+            # This can happen sometimes if a model is split into multiple meshes.
+            # Example: A glasses mesh with "b__CAS_Glasses__" would try to merge into the "head" group,
+            # but there was no "b__Head__" initially on the glasses mesh, so "head" was never created in the rename loop.
+            # TODO: This needs testing to make sure it works!
+            if not group_a_name in obj.vertex_groups:
+                bpy.ops.object.vertex_group_add(name=group_a_name)
+            
             # Merge
             bpy.ops.object.modifier_add(type='VERTEX_WEIGHT_MIX')
             obj.modifiers["VertexWeightMix"].mix_set = 'OR'
@@ -153,7 +161,6 @@ class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
             # Delete
             bpy.ops.object.vertex_group_set_active(group=group_b_name)
             bpy.ops.object.vertex_group_remove()
-        # TODO: If group_a doesn't exist but group_b does, create an empty group_a to merge into.
         
 
     def execute(self, context):
