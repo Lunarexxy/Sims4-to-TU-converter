@@ -147,9 +147,8 @@ class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
             # This can happen sometimes if a model is split into multiple meshes.
             # Example: A glasses mesh with "b__CAS_Glasses__" would try to merge into the "head" group,
             # but there was no "b__Head__" initially on the glasses mesh, so "head" was never created in the rename loop.
-            # TODO: This needs testing to make sure it works!
             if not group_a_name in obj.vertex_groups:
-                bpy.ops.object.vertex_group_add(name=group_a_name)
+                obj.vertex_groups.new(name=group_a_name)
             
             # Merge
             bpy.ops.object.modifier_add(type='VERTEX_WEIGHT_MIX')
