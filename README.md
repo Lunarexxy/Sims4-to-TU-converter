@@ -13,7 +13,7 @@ It renames the Sims 4 vertex groups to Tower Unite vertex groups. (and merges an
 
 ## How do I use it?
 
-Install the addon, import your Sims 4 model, select the mesh (not the armature!) and press the Fix Vertex Groups button, in the 3D viewport sidebar.
+Install the addon, import your Sims 4 model, select the mesh (not the rig/armature!) and press the Fix Vertex Groups button, in the 3D viewport sidebar.
 
 ![image](https://github.com/Lunarexxy/Sims4-to-TU-converter/assets/8879206/6610abbc-2627-49f9-a1d0-f8ab6fbf2d16)
 
