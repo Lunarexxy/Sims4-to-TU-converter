@@ -5,6 +5,12 @@ It relies on the .dae models exported by the [TS4 SimRipper](https://sims4studio
 
 *(The TS4 SimRipper thread was originally [here](https://modthesims.info/d/635720/ts4-simripper-classic-rip-sims-from-savegames-v3-13-0-0-7-12-22.html), but its creator, CmarNYC, sadly passed away in October 2023, so updates are now made by community members. If the link above does not work, check this thread for updates.)*
 
+## What does the script do?
+
+It renames the Sims 4 vertex groups to Tower Unite vertex groups. (and merges any that aren't needed)
+
+![image](https://github.com/Lunarexxy/Sims4-to-TU-converter/assets/8879206/7100fb6f-cace-401f-87e0-e80f82a9c02d)
+
 ## How to install the script
 * Download the latest **[Sims4_to_TU_converter.zip](https://github.com/Lunarexxy/Sims4-to-TU-converter/releases)** file
 * Open Blender 2.80 or later *(Blender 3.0+ and 4.0+ work too!)*
