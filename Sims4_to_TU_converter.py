@@ -218,10 +218,15 @@ class VIEW3D_PT_Sims4VertexGroupFixer(bpy.types.Panel):
     bl_label = 'Sims 4 to Tower Unite'
     
     def draw(self, context):
+        obj = context.active_object
+
         self.layout.label(text="1: Import .dae model")
         self.layout.label(text="2: Select mesh")
         self.layout.label(text='3: Press "Fix Vertex Groups"')
-        self.layout.operator('object.sims4_fix_vertex_groups', text="Fix Vertex Groups", icon="FUND")
+        if obj.type == 'MESH':
+            self.layout.operator('object.sims4_fix_vertex_groups', text="Fix Vertex Groups", icon="FUND")
+        else:
+            self.layout.operator('object.sims4_fix_vertex_groups', text="Select a mesh first.", icon="X")
         self.layout.label(text="4: Check for errors at")
         self.layout.label(text="the bottom of the screen")
     
@@ -243,7 +248,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
         
         # Armature sanity checks
         if obj is None or obj.type != 'ARMATURE' or obj.name != 'rig':
-            self.debug("FAILED: Armature not selected. Make sure you selected the item called 'rig'.
+            self.debug("FAILED: Armature not selected. Make sure you selected the item called 'rig'.")
         
         # The preferred setup would be:
         # User selects the rig (obj = context.active_object)
