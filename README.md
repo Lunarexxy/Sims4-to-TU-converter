@@ -73,4 +73,4 @@ You're also 100% free to copy, modify, and re-use this script for your own purpo
 
 *Redoo*, *Skullasaurus*, *Laurie*, and others, for offering many different Sim models to learn from and practice on.
 
-[*KawaiiEvil*](https://kawaiievilvt.carrd.co/), for writing a [text guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) on how to take the ripped models, fix them up, and import them into Tower Unite.
+*KawaiiEvil*, for writing a [text guide](https://docs.google.com/document/d/1QuYlJVm9N7VwhvK0ybf0UNh53gOLKEjAIN32H_VFBzE) on how to take the ripped models, fix them up, and import them into Tower Unite.
