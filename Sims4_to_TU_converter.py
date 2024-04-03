@@ -246,17 +246,21 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
             self.debug("FAILED: Armature not selected. Make sure you selected the item called 'rig'.
         
         # The preferred setup would be:
-        # User selects the rig
-        # Script gets a reference to the rig and the child mesh(es)
-        # Script poses the rig based on pre-defined values, which may differ by model age and gender.
-        # Script applies the Armature modifier on each child mesh
-        # Script deletes the rig
-        # Script scales each child mesh based on pre-defined values, which may differ by model age and gender.
-        # Script applies the scale.
-        # Script optionally adds the normal map from the same directory as the diffuse map.
-        # Script spawns the Tower Unite Armature, if possible, and if the addon is installed, with the right arm height (may also differ by model age and gender)
+        # User selects the rig (obj = context.active_object)
+        # User inputs the model's age and gender (figure out how to make a dropdown menu for this)
+        # User presses an "Auto Rig" button that activates this function.
+        # Script checks if the Tower Unite Suite is installed, and cancels with an error message if it isn't.
+        # Script gets a reference to the rig and the child mesh(es) (Object.children)
+        # Script poses the rig based on pre-defined values that differ by model age and gender. (defined in Sims4_Char_Transformations.py - bpy.ops.transform.rotate)
+        # Script applies the Armature modifier on each child mesh (bpy.ops.object.modifier_apply(modifier='Armature')
+        # Script deletes the rig (bpy.ops.object.delete())
+        # Script scales each child mesh based on pre-defined values, which may differ by model age and gender. (bpy.ops.transform.resize())
+        # Script applies the scale. (bpy.ops.object.transform_apply(scale=True))
+        # Script optionally adds the normal map from the same directory as the diffuse map. (OPTIONAL: this is a nice-to-have but not crucial so i'm leaving it for now)
+        # Script spawns the Tower Unite Armature, with the right arm height.
         # Script adds Armature modifier to each child mesh and points it to the TU Armature
         # Script calls object.sims4_fix_vertex_groups on each child mesh.
+        # User manually fixes some weighting under the chin, if they want.
         # User exports the model.
 
 
