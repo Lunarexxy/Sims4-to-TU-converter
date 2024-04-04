@@ -286,9 +286,16 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
         selected_gender = context.scene.sim_properties.gender
         selected_age = context.scene.sim_properties.age
 
-        # Armature sanity checks
+        # Sanity checks
         if obj is None or obj.type != 'ARMATURE' or obj.name != 'rig':
             self.debug("FAILED: Armature not selected. Make sure you selected the item called 'rig'.")
+            return {"CANCELLED"}
+        # Make sure Tower Unite Suite is installed, by checking if one of its property groups is registered.
+        # This apparently isn't the ideal way to do this but I couldn't get "hasattr" to work with operators.
+        try:
+            check_tu_suite_installed = context.scene.TU_Armature_Props
+        except:
+            self.debug("FAILED: Tower Unite Suite add-on not installed, or not enabled.")
             return {"CANCELLED"}
         
         # The preferred setup would be:
