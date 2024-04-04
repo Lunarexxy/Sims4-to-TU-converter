@@ -219,6 +219,7 @@ class VIEW3D_PT_Sims4VertexGroupFixer(bpy.types.Panel):
     
     def draw(self, context):
         obj = context.active_object
+        sim_properties = context.scene.sim_properties
 
         self.layout.label(text="1: Import .dae model")
         self.layout.label(text="2: Select mesh")
@@ -229,7 +230,31 @@ class VIEW3D_PT_Sims4VertexGroupFixer(bpy.types.Panel):
             self.layout.operator('object.sims4_fix_vertex_groups', text="Select a mesh first.", icon="X")
         self.layout.label(text="4: Check for errors at")
         self.layout.label(text="the bottom of the screen")
+        self.layout.separator()
+        self.layout.label(text=sim_properties.gender)
+        self.layout.prop(sim_properties, "gender")
+        self.layout.prop(sim_properties, "age")
+        self.layout.label(text=sim_properties.age)
     
+
+class SimProperties(bpy.types.PropertyGroup):
+    gender: bpy.props.EnumProperty(
+        name="Gender",
+        description="The gender of the Sim",
+        default="female",
+        items=[("female", "Female", ""),
+               ("male", "Male", "")]
+    )
+    age: bpy.props.EnumProperty(
+        name="Age",
+        description="The age of the Sim",
+        default="adult",
+        items=[("elder", "Elder", ""),
+               ("adult", "Adult", ""),
+               ("young_adult", "Young Adult", ""),
+               ("teen", "Teen", ""),
+               ("child", "Child", ""),]
+    )
 
 # This one's a work in progress.
 # Ideally we could have a single button handle the rigging of the entire model
@@ -245,14 +270,16 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
     
     def execute(self, context):
         obj = context.active_object
-        
+        selected_gender = context.scene.sim_properties.gender
+        selected_age = context.scene.sim_properties.age
+
         # Armature sanity checks
         if obj is None or obj.type != 'ARMATURE' or obj.name != 'rig':
             self.debug("FAILED: Armature not selected. Make sure you selected the item called 'rig'.")
         
         # The preferred setup would be:
         # User selects the rig (obj = context.active_object)
-        # User inputs the model's age and gender (figure out how to make a dropdown menu for this)
+        # User inputs the model's age and gender (solved)
         # User presses an "Auto Rig" button that activates this function.
         # Script checks if the Tower Unite Suite is installed, and cancels with an error message if it isn't.
         # Script gets a reference to the rig and the child mesh(es) (Object.children)
@@ -272,10 +299,14 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
 def register():
     bpy.utils.register_class(OBJECT_OT_Sims4VertexGroupFixer)
     bpy.utils.register_class(VIEW3D_PT_Sims4VertexGroupFixer)
+    bpy.utils.register_class(SimProperties)
+    bpy.types.Scene.sim_properties = bpy.props.PointerProperty(type=SimProperties)
 
 def unregister():
     bpy.utils.unregister_class(OBJECT_OT_Sims4VertexGroupFixer)
     bpy.utils.unregister_class(VIEW3D_PT_Sims4VertexGroupFixer)
+    bpy.utils.unregister_class(SimProperties)
+    del bpy.types.Scene.sim_properties
 
 if __name__ == "__main__":
     register()
