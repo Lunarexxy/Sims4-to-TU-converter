@@ -234,21 +234,34 @@ class VIEW3D_PT_Sims4AutoRig(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = 'Sims 4'
-    bl_label = 'S4TU - Auto Rigger'
+    bl_label = 'S4TU - Auto Rig'
 
     def draw(self, context):
         obj = context.active_object
         sim_properties = context.scene.sim_properties
+        failed = False
 
-        self.layout.label(text="1: Import .dae model")
-        self.layout.label(text="2: Press Auto Rig")
-        self.layout.label(text=sim_properties.gender)
-        self.layout.prop(sim_properties, "gender")
-        self.layout.prop(sim_properties, "age")
-        self.layout.label(text=sim_properties.age)
-        self.layout.operator('object.sims4_auto_rig', text="Auto Rig", icon="FUND")
-        self.layout.label(text="3: Check for errors at")
-        self.layout.label(text="the bottom of the screen")
+        try:
+            check_tu_suite_installed = context.scene.TU_Armature_Props
+        except:
+            failed = True
+        
+        if failed:
+            self.layout.label(text="Auto Rig requires the")
+            self.layout.label(text="Tower Unite Suite addon")
+            self.layout.label(text="to be installed.")
+        else:
+            self.layout.label(text="1: Import .dae model")
+            self.layout.label(text="2: Select Sim's gender & age")
+            self.layout.label(text=sim_properties.gender)
+            self.layout.prop(sim_properties, "gender")
+            self.layout.prop(sim_properties, "age")
+            self.layout.label(text=sim_properties.age)
+            self.layout.label(text="3: Press Auto Rig")
+            self.layout.operator('object.sims4_auto_rig', text="Auto Rig", icon="FUND")
+            self.layout.label(text="4: Check for errors at")
+            self.layout.label(text="the bottom of the screen")
+            
 
 class SimProperties(bpy.types.PropertyGroup):
     gender: bpy.props.EnumProperty(
