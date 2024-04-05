@@ -76,7 +76,6 @@ Female_Adult = [
 {"transform_type":"delete_armature"},
 
 {"transform_type":"scale_mesh", "axis":"GLOBAL", "x":112.0, "y":112.0, "z":112.0},
-{"transform_type":"apply_scale"},
 
 # Admittedly I don't know the precise percentage here, but there's a sweet spot I usually reach
 # with the slider that works best with the values above. Consider it a TODO: needs tweaking.
