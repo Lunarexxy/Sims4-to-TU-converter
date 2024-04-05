@@ -388,6 +388,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                 case "scale_mesh":
                     # Select each child mesh
                     # bpy.ops.transform.resize()
+                    # Then apply the scale
                     self.debug("scale_mesh")
                 case "apply_pose":
                     # Select each child mesh
@@ -405,7 +406,8 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     # Somehow run object.sims4_fix_vertex_groups
                     self.debug("fix_vertex_groups")
                 case _:
-                    self.debug("FAILED: Invalid transform_type data. Yell at Lunarexxy.")
+                    # Apparently the list of actions can get stuck in memory even after re-installing the addon.
+                    self.debug("FAILED: Invalid transform_type data. Restart Blender or yell at Lunarexxy.")
                     return {"CANCELLED"}
                 
 
