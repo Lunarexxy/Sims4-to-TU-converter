@@ -34,6 +34,7 @@ bl_info = {
 }
 
 import bpy
+import Sims4_Char_Transformations as SimData
 
 
 class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
@@ -253,10 +254,10 @@ class VIEW3D_PT_Sims4AutoRig(bpy.types.Panel):
         else:
             self.layout.label(text="1: Import .dae model")
             self.layout.label(text="2: Select Sim's gender & age")
-            self.layout.label(text=sim_properties.gender)
+            #self.layout.label(text=sim_properties.gender)
             self.layout.prop(sim_properties, "gender")
             self.layout.prop(sim_properties, "age")
-            self.layout.label(text=sim_properties.age)
+            #self.layout.label(text=sim_properties.age)
             self.layout.label(text="3: Press Auto Rig")
             self.layout.operator('object.sims4_auto_rig', text="Auto Rig", icon="FUND")
             self.layout.label(text="4: Check for errors at")
@@ -292,27 +293,76 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
     
      # having to add "{'INFO'}, " to every print call was annoying, lol
     def debug(self, message):
-        self.report({'INFO'}, message)
+        self.report({'INFO'}, str(message))
+
+    def get_sim_data(self, gender, age):
+        match gender:
+            case "male":
+                match age:
+                    case "elder":
+                        return SimData.Male_Elder
+                    case "adult":
+                        return SimData.Male_Adult
+                    case "young_adult":
+                        return SimData.Male_Young_Adult
+                    case "teen":
+                        return SimData.Male_Teen
+                    case "child":
+                        return SimData.Male_Child
+                    case _:
+                        self.debug("FAILED: Invalid age")
+                        return None
+            case "female":
+                match age:
+                    case "elder":
+                        return SimData.Female_Elder
+                    case "adult":
+                        return SimData.Female_Adult
+                    case "young_adult":
+                        return SimData.Female_Young_Adult
+                    case "teen":
+                        return SimData.Female_Teen
+                    case "child":
+                        return SimData.Female_Child
+                    case _:
+                        self.debug("FAILED: Invalid age")
+                        return None
+            case _:
+                self.debug("FAILED: Invalid gender")
+                return None
+
     
     def execute(self, context):
-        obj = context.active_object
-        selected_gender = context.scene.sim_properties.gender
-        selected_age = context.scene.sim_properties.age
+        rig = context.active_object
+        sim_data = self.get_sim_data(context.scene.sim_properties.gender, context.scene.sim_properties.age)
 
         # Sanity checks
-        if obj is None or obj.type != 'ARMATURE' or obj.name != 'rig':
+        if rig is None or rig.type != 'ARMATURE' or rig.name != 'rig':
             self.debug("FAILED: Armature not selected. Make sure you selected the item called 'rig'.")
             return {"CANCELLED"}
+        if sim_data is None:
+            # get_sim_data() already prints the error, if any
+            return {"CANCELLED"}
         # Make sure Tower Unite Suite is installed, by checking if one of its property groups is registered.
-        # This apparently isn't the ideal way to do this but I couldn't get "hasattr" to work with operators.
         try:
             check_tu_suite_installed = context.scene.TU_Armature_Props
         except:
             self.debug("FAILED: Tower Unite Suite add-on not installed, or not enabled.")
             return {"CANCELLED"}
-        
+
+        # Get child meshes
+        child_meshes = []
+        for child in rig.children:
+            if child is None:
+                continue
+            elif child.type == 'MESH':
+                child_meshes.append(child)
+        if len(child_meshes) == 0:
+            self.debug("FAILED: Selected rig has no child mesh(es)")
+            return {"CANCELLED"}
+
         # The preferred setup would be:
-        # User selects the rig (obj = context.active_object) (or it's just auto-selected by the name "rig")
+        # User selects the rig (obj = context.active_object)
         # User inputs the model's age and gender
         # User presses an "Auto Rig" button that activates this function.
         # Script checks if the Tower Unite Suite is installed, and cancels with an error message if it isn't.
