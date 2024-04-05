@@ -32,69 +32,69 @@
         # User exports the model.
 
 # TODO: I haven't received any characters like this to test on. May be the same as adult, not sure.
-Sims4Char_Female_Elder = []
-Sims4Char_Male_Elder = []
+Female_Elder = []
+Male_Elder = []
 
-Sims4Char_Female_Adult = [
-{transform_type:"rotate", bone_name:"b__R_UpperArm__", axis:"GLOBAL", x:0.0, y:0.0, z:-5.0},
-{transform_type:"rotate", bone_name:"b__L_UpperArm__", axis:"GLOBAL", x:0.0, y:0.0, z:5.0},
+Female_Adult = [
+{"transform_type":"rotate", "bone_name":"b__R_UpperArm__", "axis":"GLOBAL", "x":0.0, "y":0.0, "z":-5.0},
+{"transform_type":"rotate", "bone_name":"b__L_UpperArm__", "axis":"GLOBAL", "x":0.0, "y":0.0, "z":5.0},
 
-{transform_type:"rotate", bone_name:"b__R_Thigh__", axis:"GLOBAL", x:0.0, y:-1.5, z:0.0},
-{transform_type:"rotate", bone_name:"b__L_Thigh__", axis:"GLOBAL", x:0.0, y:1.5, z:0.0},
+{"transform_type":"rotate", "bone_name":"b__R_Thigh__", "axis":"GLOBAL", "x":0.0, "y":-1.5, "z":0.0},
+{"transform_type":"rotate", "bone_name":"b__L_Thigh__", "axis":"GLOBAL", "x":0.0, "y":1.5, "z":0.0},
 
-{transform_type:"rotate", bone_name:"b__R_Foot__", axis:"GLOBAL", x:0.0, y:1.5, z:5.0},
-{transform_type:"rotate", bone_name:"b__L_Foot__", axis:"GLOBAL", x:0.0, y:-1.5, z:5.0},
+{"transform_type":"rotate", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "x":0.0, "y":1.5, "z":5.0},
+{"transform_type":"rotate", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "x":0.0, "y":-1.5, "z":5.0},
 
 # Rotating the feet and thighs closer together has pushed the feet into the ground slightly.
 # This nudges them back up. It should be pretty much imperceptible either way, though.
-{transform_type:"move", bone_name:"b__R_Foot__", axis:"GLOBAL", x:0.0, y:0.0, z:0.062},
-{transform_type:"move", bone_name:"b__L_Foot__", axis:"GLOBAL", x:0.0, y:0.0, z:0.062},
+{"transform_type":"move", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "x":0.0, "y":0.0, "z":0.062},
+{"transform_type":"move", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "x":0.0, "y":0.0, "z":0.062},
 
-{transform_type:"rotate", bone_name:"b__R_Pinky0__", axis:"LOCAL", x:0.0, y:0.0, z:15.0},
-{transform_type:"rotate", bone_name:"b__L_Pinky0__", axis:"LOCAL", x:0.0, y:0.0, z:15.0},
-{transform_type:"rotate", bone_name:"b__R_Pinky0__", axis:"LOCAL", x:0.0, y:10.0, z:0.0},
-{transform_type:"rotate", bone_name:"b__L_Pinky0__", axis:"LOCAL", x:0.0, y:-10.0, z:0.0},
+{"transform_type":"rotate", "bone_name":"b__R_Pinky0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":15.0},
+{"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":15.0},
+{"transform_type":"rotate", "bone_name":"b__R_Pinky0__", "axis":"LOCAL", "x":0.0, "y":10.0, "z":0.0},
+{"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "x":0.0, "y":-10.0, "z":0.0},
 
-{transform_type:"rotate", bone_name:"b__R_Ring0__", axis:"LOCAL", x:0.0, y:0.0, z:13.0},
-{transform_type:"rotate", bone_name:"b__L_Ring0__", axis:"LOCAL", x:0.0, y:0.0, z:13.0},
-{transform_type:"rotate", bone_name:"b__R_Ring0__", axis:"LOCAL", x:0.0, y:3.0, z:0.0},
-{transform_type:"rotate", bone_name:"b__L_Ring0__", axis:"LOCAL", x:0.0, y:-3.0, z:0.0},
+{"transform_type":"rotate", "bone_name":"b__R_Ring0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":13.0},
+{"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":13.0},
+{"transform_type":"rotate", "bone_name":"b__R_Ring0__", "axis":"LOCAL", "x":0.0, "y":3.0, "z":0.0},
+{"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "x":0.0, "y":-3.0, "z":0.0},
 
-{transform_type:"rotate", bone_name:"b__R_Mid0__", axis:"LOCAL", x:0.0, y:0.0, z:13.0},
-{transform_type:"rotate", bone_name:"b__L_Mid0__", axis:"LOCAL", x:0.0, y:0.0, z:13.0},
+{"transform_type":"rotate", "bone_name":"b__R_Mid0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":13.0},
+{"transform_type":"rotate", "bone_name":"b__L_Mid0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":13.0},
 
-{transform_type:"rotate", bone_name:"b__R_Index0__", axis:"LOCAL", x:0.0, y:0.0, z:14.0},
-{transform_type:"rotate", bone_name:"b__L_Index0__", axis:"LOCAL", x:0.0, y:0.0, z:14.0},
+{"transform_type":"rotate", "bone_name":"b__R_Index0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":14.0},
+{"transform_type":"rotate", "bone_name":"b__L_Index0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":14.0},
 
-{transform_type:"rotate", bone_name:"b__R_Thumb1__", axis:"LOCAL", x:0.0, y:0.0, z:10.0},
-{transform_type:"rotate", bone_name:"b__L_Thumb1__", axis:"LOCAL", x:0.0, y:0.0, z:10.0},
+{"transform_type":"rotate", "bone_name":"b__R_Thumb1__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":10.0},
+{"transform_type":"rotate", "bone_name":"b__L_Thumb1__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":10.0},
 
-{transform_type:"rotate", bone_name:"b__R_Thumb2__", axis:"LOCAL", x:0.0, y:0.0, z:15.0},
-{transform_type:"rotate", bone_name:"b__L_Thumb2__", axis:"LOCAL", x:0.0, y:0.0, z:15.0},
+{"transform_type":"rotate", "bone_name":"b__R_Thumb2__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":15.0},
+{"transform_type":"rotate", "bone_name":"b__L_Thumb2__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":15.0},
 
-{transform_type:"apply_pose"},
-{transform_type:"delete_armature"},
+{"transform_type":"apply_pose"},
+{"transform_type":"delete_armature"},
 
-{transform_type:"scale_mesh", axis:"GLOBAL", x:112.0, y:112.0, z:112.0},
-{transform_type:"apply_scale"},
+{"transform_type":"scale_mesh", "axis":"GLOBAL", "x":112.0, "y":112.0, "z":112.0},
+{"transform_type":"apply_scale"},
 
 # Admittedly I don't know the precise percentage here, but there's a sweet spot I usually reach
 # with the slider that works best with the values above. Consider it a TODO: needs tweaking.
-{transform_type:"spawn_tu_rig", arms_raised_percent:51.5},
-{transform_type:"fix_vertex_groups"}
+{"transform_type":"spawn_tu_rig", "arms_raised_percent":51.5},
+{"transform_type":"fix_vertex_groups"}
 ]
 
 # TODO: I haven't found the right values for male models yet. might be able to copy over most of the female instructions. I think their scale was 110, though.
-Sims4Char_Male_Adult = []
+Male_Adult = []
 
 # TODO: I haven't received any characters like this to test on.
-Sims4Char_Female_Young_Adult = []
-Sims4Char_Male_Young_Adult = []
+Female_Young_Adult = []
+Male_Young_Adult = []
 
 # TODO: I haven't received any characters like this to test on.
-Sims4Char_Female_Teen = []
-Sims4Char_Male_Teen = []
+Female_Teen = []
+Male_Teen = []
 
 # TODO: I haven't received any characters like this to test on.
-Sims4Char_Female_Child = []
-Sims4Char_Female_Child = []
+Female_Child = []
+Female_Child = []
