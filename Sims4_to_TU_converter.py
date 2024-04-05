@@ -361,13 +361,61 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
             self.debug("FAILED: Selected rig has no child mesh(es)")
             return {"CANCELLED"}
 
+        # Perform the actions listed in the sim data
+        for action in sim_data:
+            # All actions need a transform type.
+            if not "transform_type" in action:
+                # Not the most user-friendly error... but hopefully it'll never show up.
+                self.debug("FAILED: Missing transform_type data. Yell at Lunarexxy.")
+                return {"CANCELLED"}
+
+            # Deselect everything
+            # TODO
+            # actually apparently you can temporarily override the context
+            # in blender 3.2+ by doing:
+            #  with bpy.context.temp_override(selected_objects=objs):
+            #  bpy.ops.object.delete()
+
+            match action["transform_type"]:
+                case "rotate":
+                    # Select the bone in action["bone_name"]
+                    # bpy.ops.transform.rotate()
+                    self.debug("rotate")
+                case "move":
+                    # Select the bone in action["bone_name"]
+                    # bpy.ops.transform.translate()
+                    self.debug("move")
+                case "scale_mesh":
+                    # Select each child mesh
+                    # bpy.ops.transform.resize()
+                    self.debug("scale_mesh")
+                case "apply_pose":
+                    # Select each child mesh
+                    # bpy.ops.object.modifier_apply('Armature')
+                    self.debug("apply_pose")
+                case "delete_armature":
+                    # Select rig
+                    # bpy.ops.object.delete()
+                    self.debug("delete_armature")
+                case "spawn_tu_rig":
+                    # Somehow run TU Suite's armature-spawning code
+                    # and configure it as desired.
+                    self.debug("spawn_tu_rig")
+                case "fix_vertex_groups":
+                    # Somehow run object.sims4_fix_vertex_groups
+                    self.debug("fix_vertex_groups")
+                case _:
+                    self.debug("FAILED: Invalid transform_type data. Yell at Lunarexxy.")
+                    return {"CANCELLED"}
+                
+
         # The preferred setup would be:
-        # User selects the rig (obj = context.active_object)
-        # User inputs the model's age and gender
-        # User presses an "Auto Rig" button that activates this function.
-        # Script checks if the Tower Unite Suite is installed, and cancels with an error message if it isn't.
-        # Script gets a reference to the rig and the child mesh(es) (Object.children)
-        # Script poses the rig based on pre-defined values that differ by model age and gender. (defined in Sims4_Char_Transformations.py - bpy.ops.transform.rotate)
+        # -User selects the rig (obj = context.active_object)
+        # -User inputs the model's age and gender
+        # -User presses an "Auto Rig" button that activates this function.
+        # -Script checks if the Tower Unite Suite is installed, and cancels with an error message if it isn't.
+        # -Script gets a reference to the rig and the child mesh(es) (Object.children)
+        # Script poses the rig based on pre-defined values that differ by model age and gender. (defined in Sims4_Char_Transformations.py - bpy.ops.transform.rotate - bpy.types.Object.select_get())
         # Script applies the Armature modifier on each child mesh (bpy.ops.object.modifier_apply(modifier='Armature')
         # Script deletes the rig (bpy.ops.object.delete())
         # Script scales each child mesh based on pre-defined values, which may differ by model age and gender. (bpy.ops.transform.resize())
