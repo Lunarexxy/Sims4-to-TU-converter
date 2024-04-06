@@ -36,46 +36,46 @@ Female_Elder = []
 Male_Elder = []
 
 Female_Adult = [
-{"transform_type":"rotate", "bone_name":"b__R_UpperArm__", "axis":"GLOBAL", "x":0.0, "y":0.0, "z":-5.0},
-{"transform_type":"rotate", "bone_name":"b__L_UpperArm__", "axis":"GLOBAL", "x":0.0, "y":0.0, "z":5.0},
+{"transform_type":"rotate", "bone_name":"b__R_UpperArm__", "axis":"GLOBAL", "X":0.0, "Y":0.0, "Z":-5.0},
+{"transform_type":"rotate", "bone_name":"b__L_UpperArm__", "axis":"GLOBAL", "X":0.0, "Y":0.0, "Z":5.0},
 
-{"transform_type":"rotate", "bone_name":"b__R_Thigh__", "axis":"GLOBAL", "x":0.0, "y":-1.5, "z":0.0},
-{"transform_type":"rotate", "bone_name":"b__L_Thigh__", "axis":"GLOBAL", "x":0.0, "y":1.5, "z":0.0},
+{"transform_type":"rotate", "bone_name":"b__R_Thigh__", "axis":"GLOBAL", "X":0.0, "Y":-1.5, "Z":0.0},
+{"transform_type":"rotate", "bone_name":"b__L_Thigh__", "axis":"GLOBAL", "X":0.0, "Y":1.5, "Z":0.0},
 
-{"transform_type":"rotate", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "x":0.0, "y":1.5, "z":5.0},
-{"transform_type":"rotate", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "x":0.0, "y":-1.5, "z":5.0},
+{"transform_type":"rotate", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "X":0.0, "Y":1.5, "Z":5.0},
+{"transform_type":"rotate", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "X":0.0, "Y":-1.5, "Z":5.0},
 
 # Rotating the feet and thighs closer together has pushed the feet into the ground slightly.
 # This nudges them back up. It should be pretty much imperceptible either way, though.
-{"transform_type":"move", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "x":0.0, "y":0.0, "z":0.062},
-{"transform_type":"move", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "x":0.0, "y":0.0, "z":0.062},
+{"transform_type":"move", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "X":0.0, "Y":0.0, "Z":0.062},
+{"transform_type":"move", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "X":0.0, "Y":0.0, "Z":0.062},
 
-{"transform_type":"rotate", "bone_name":"b__R_Pinky0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":15.0},
-{"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":15.0},
-{"transform_type":"rotate", "bone_name":"b__R_Pinky0__", "axis":"LOCAL", "x":0.0, "y":10.0, "z":0.0},
-{"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "x":0.0, "y":-10.0, "z":0.0},
+{"transform_type":"rotate", "bone_name":"b__R_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":15.0},
+{"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":15.0},
+{"transform_type":"rotate", "bone_name":"b__R_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":10.0, "Z":0.0},
+{"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":-10.0, "Z":0.0},
 
-{"transform_type":"rotate", "bone_name":"b__R_Ring0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":13.0},
-{"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":13.0},
-{"transform_type":"rotate", "bone_name":"b__R_Ring0__", "axis":"LOCAL", "x":0.0, "y":3.0, "z":0.0},
-{"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "x":0.0, "y":-3.0, "z":0.0},
+{"transform_type":"rotate", "bone_name":"b__R_Ring0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":13.0},
+{"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":13.0},
+{"transform_type":"rotate", "bone_name":"b__R_Ring0__", "axis":"LOCAL", "X":0.0, "Y":3.0, "Z":0.0},
+{"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "X":0.0, "Y":-3.0, "Z":0.0},
 
-{"transform_type":"rotate", "bone_name":"b__R_Mid0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":13.0},
-{"transform_type":"rotate", "bone_name":"b__L_Mid0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":13.0},
+{"transform_type":"rotate", "bone_name":"b__R_Mid0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":13.0},
+{"transform_type":"rotate", "bone_name":"b__L_Mid0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":13.0},
 
-{"transform_type":"rotate", "bone_name":"b__R_Index0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":14.0},
-{"transform_type":"rotate", "bone_name":"b__L_Index0__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":14.0},
+{"transform_type":"rotate", "bone_name":"b__R_Index0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":14.0},
+{"transform_type":"rotate", "bone_name":"b__L_Index0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":14.0},
 
-{"transform_type":"rotate", "bone_name":"b__R_Thumb1__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":10.0},
-{"transform_type":"rotate", "bone_name":"b__L_Thumb1__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":10.0},
+{"transform_type":"rotate", "bone_name":"b__R_Thumb1__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":10.0},
+{"transform_type":"rotate", "bone_name":"b__L_Thumb1__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":10.0},
 
-{"transform_type":"rotate", "bone_name":"b__R_Thumb2__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":15.0},
-{"transform_type":"rotate", "bone_name":"b__L_Thumb2__", "axis":"LOCAL", "x":0.0, "y":0.0, "z":15.0},
+{"transform_type":"rotate", "bone_name":"b__R_Thumb2__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":15.0},
+{"transform_type":"rotate", "bone_name":"b__L_Thumb2__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":15.0},
 
 {"transform_type":"apply_pose"},
 {"transform_type":"delete_armature"},
 
-{"transform_type":"scale_mesh", "axis":"GLOBAL", "x":112.0, "y":112.0, "z":112.0},
+{"transform_type":"scale_mesh", "axis":"GLOBAL", "X":112.0, "Y":112.0, "Z":112.0},
 
 # Admittedly I don't know the precise percentage here, but there's a sweet spot I usually reach
 # with the slider that works best with the values above. Consider it a TODO: needs tweaking.
