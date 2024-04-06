@@ -79,7 +79,7 @@ Female_Adult = [
 
 # Admittedly I don't know the precise percentage here, but there's a sweet spot I usually reach
 # with the slider that works best with the values above. Consider it a TODO: needs tweaking.
-{"transform_type":"spawn_tu_rig", "arms_raised_percent":51.5},
+{"transform_type":"spawn_tu_rig", "arms_raised_percent":50.8475},
 {"transform_type":"fix_vertex_groups"}
 ]
 
