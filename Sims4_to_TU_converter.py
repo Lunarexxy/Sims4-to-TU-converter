@@ -337,7 +337,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
         sim_data = self.get_sim_data(context.scene.sim_properties.gender, context.scene.sim_properties.age)
 
         # Sanity checks
-        if rig is None or rig.type != 'ARMATURE' or rig.name.startswith('rig'):
+        if rig is None or rig.type != 'ARMATURE' or not rig.name.startswith('rig'):
             self.debug("FAILED: Armature not selected. Make sure you selected the item called 'rig'.")
             return {"CANCELLED"}
         if sim_data is None:
