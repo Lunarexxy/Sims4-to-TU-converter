@@ -417,37 +417,41 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         bpy.ops.object.transform_apply()
                 
                 case "scale_mesh":
-                    # Select each child mesh
-                    # bpy.ops.transform.resize()
-                    # Then apply the scale
+                    # Scale the child meshes and apply the new scale
+                    self.debug("Scaling mesh(es)")
                     with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
                         scale_vector = (action["X"], action["Y"], action["Z"])
                         bpy.ops.transform.resize(value=scale_vector, orient_type=action["axis"])
                         bpy.ops.object.transform_apply()
-                    self.debug("scale_mesh")
                 
                 case "apply_pose":
-                    # Select each child mesh
-                    # bpy.ops.object.modifier_apply('Armature')
+                    # Apply the current pose
+                    self.debug("Applying pose")
                     with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
                         bpy.ops.object.modifier_apply('Armature')
-                    self.debug("apply_pose")
                 
                 case "delete_armature":
-                    # Select rig
-                    # bpy.ops.object.delete()
-                    with bpy.context.temp_override(selected_objects=[rig], mode='OBJECT'):
-                        bpy.ops.object.delete(confirm=False)
-                    self.debug("delete_armature")
+                    # Delete the Sims 4 rig.
+                    if not rig is None:
+                        self.debug("Deleting armature")
+                        with bpy.context.temp_override(selected_objects=[rig], mode='OBJECT'):
+                            bpy.ops.object.delete(confirm=False)
                 
                 case "spawn_tu_rig":
-                    # Somehow run TU Suite's armature-spawning code
-                    # and configure it as desired.
-                    self.debug("spawn_tu_rig")
+                    # Configure and run TU Suite's armature-spawning code. Only the "arms raised" value should matter here.
+                    self.debug("Spawning TU Armature")
+                    # This is kind of a ghetto way to do it but hopefully it works...
+                    bpy.types.Scene.TU_Armature_Props.t_pose = action["arms_raised_percent"]
+                    bpy.ops.tower_unite_suite.create_armature()
+                    # TU Suite sets Blender to Edit mode after spawning its armature, for some reason.
+                    bpy.ops.object.mode_set('OBJECT')
                 
                 case "fix_vertex_groups":
                     # Somehow run object.sims4_fix_vertex_groups
-                    self.debug("fix_vertex_groups")
+                    for mesh in child_meshes:
+                        self.debug("Fixing vertex groups on " + mesh.name)
+                        with bpy.context.temp_override(selected_objects=[mesh], mode='OBJECT'):
+                            bpy.ops.object.sims4_fix_vertex_groups()
                 
                 case _:
                     # Apparently the list of actions can get stuck in memory even after re-installing the addon.
