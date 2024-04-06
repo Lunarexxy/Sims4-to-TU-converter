@@ -390,11 +390,14 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         return {"CANCELLED"}
 
                     self.debug("Rotating bone "+action["bone_name"])
-                    with bpy.context.temp_override(selected_objects=bone):
-                        bpy.ops.object.mode_set('POSE')
-                        bpy.ops.transform.rotate( value=action["X"], orient_type="X", orient_type=action["axis"] )
-                        bpy.ops.transform.rotate( value=action["Y"], orient_type="Y", orient_type=action["axis"] )
-                        bpy.ops.transform.rotate( value=action["Z"], orient_type="Z", orient_type=action["axis"] )
+                    vx = action["X"]
+                    vy = action["Y"]
+                    vz = action["Z"]
+                    axis = action["axis"]
+                    with bpy.context.temp_override(selected_objects=bone, mode='POSE'):
+                        bpy.ops.transform.rotate( value=vx, orient_type="X", orient_type=axis )
+                        bpy.ops.transform.rotate( value=vy, orient_type="Y", orient_type=axis )
+                        bpy.ops.transform.rotate( value=vz, orient_type="Z", orient_type=axis )
                 
                 case "move":
                     # Select the bone in action["bone_name"]
@@ -408,8 +411,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         return {"CANCELLED"}
 
                     self.debug("Moving bone "+action["bone_name"])
-                    with bpy.context.temp_override(selected_objects=bone):
-                        bpy.ops.object.mode_set('POSE')
+                    with bpy.context.temp_override(selected_objects=bone, mode='POSE'):
                         move_vector = (action["X"], action["Y"], action["Z"])
                         bpy.ops.transform.translate(value=move_vector, orient_type=action["axis"])
                         bpy.ops.object.transform_apply()
@@ -418,8 +420,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     # Select each child mesh
                     # bpy.ops.transform.resize()
                     # Then apply the scale
-                    with bpy.context.temp_override(selected_objects=child_meshes):
-                        bpy.ops.object.mode_set('POSE')
+                    with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
                         scale_vector = (action["X"], action["Y"], action["Z"])
                         bpy.ops.transform.resize(value=scale_vector, orient_type=action["axis"])
                         bpy.ops.object.transform_apply()
@@ -428,14 +429,14 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                 case "apply_pose":
                     # Select each child mesh
                     # bpy.ops.object.modifier_apply('Armature')
-                    with bpy.context.temp_override(selected_objects=child_meshes):
+                    with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
                         bpy.ops.object.modifier_apply('Armature')
                     self.debug("apply_pose")
                 
                 case "delete_armature":
                     # Select rig
                     # bpy.ops.object.delete()
-                    with bpy.context.temp_override(selected_objects=[rig]):
+                    with bpy.context.temp_override(selected_objects=[rig], mode='OBJECT'):
                         bpy.ops.object.delete(confirm=False)
                     self.debug("delete_armature")
                 
@@ -456,22 +457,22 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                 
 
         # The preferred setup would be:
-        # -User selects the rig (obj = context.active_object)
-        # -User inputs the model's age and gender
-        # -User presses an "Auto Rig" button that activates this function.
-        # -Script checks if the Tower Unite Suite is installed, and cancels with an error message if it isn't.
-        # -Script gets a reference to the rig and the child mesh(es) (Object.children)
-        # Script poses the rig based on pre-defined values that differ by model age and gender. (defined in Sims4_Char_Transformations.py - bpy.ops.transform.rotate - bpy.types.Object.select_get())
-        # Script applies the Armature modifier on each child mesh (bpy.ops.object.modifier_apply(modifier='Armature')
-        # Script deletes the rig (bpy.ops.object.delete())
-        # Script scales each child mesh based on pre-defined values, which may differ by model age and gender. (bpy.ops.transform.resize())
-        # Script applies the scale. (bpy.ops.object.transform_apply(scale=True))
-        # Script optionally adds the normal map from the same directory as the diffuse map. (OPTIONAL: this is a nice-to-have but not crucial so i'm leaving it for now)
-        # Script spawns the Tower Unite Armature, with the right arm height.
-        # Script adds Armature modifier to each child mesh and points it to the TU Armature
-        # Script calls object.sims4_fix_vertex_groups on each child mesh.
-        # User manually fixes some weighting under the chin, if they want.
-        # User exports the model.
+        # - User selects the rig (obj = context.active_object)
+        # - User inputs the model's age and gender
+        # - User presses an "Auto Rig" button that activates this function.
+        # - Script checks if the Tower Unite Suite is installed, and cancels with an error message if it isn't.
+        # - Script gets a reference to the rig and the child mesh(es) (Object.children)
+        # ? Script poses the rig based on pre-defined values that differ by model age and gender. (defined in Sims4_Char_Transformations.py - bpy.ops.transform.rotate - bpy.types.Object.select_get())
+        # ? Script applies the Armature modifier on each child mesh (bpy.ops.object.modifier_apply(modifier='Armature')
+        # ? Script deletes the rig (bpy.ops.object.delete())
+        # ? Script scales each child mesh based on pre-defined values, which may differ by model age and gender. (bpy.ops.transform.resize())
+        # ? Script applies the scale. (bpy.ops.object.transform_apply(scale=True))
+        # X Script optionally adds the normal map from the same directory as the diffuse map. (OPTIONAL: this is a nice-to-have but not crucial so i'm leaving it for now)
+        # ? Script spawns the Tower Unite Armature, with the right arm height.
+        # ? Script adds Armature modifier to each child mesh and points it to the TU Armature
+        # ? Script calls object.sims4_fix_vertex_groups on each child mesh.
+        # - User manually fixes some weighting under the chin, if they want.
+        # - User exports the model.
         self.debug("FAILED: still WIP :)")
         return {"CANCELLED"}
 
