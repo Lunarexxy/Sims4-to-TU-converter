@@ -422,13 +422,15 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
                         scale_vector = (action["X"], action["Y"], action["Z"])
                         bpy.ops.transform.resize(value=scale_vector, orient_type=action["axis"])
-                        bpy.ops.object.transform_apply()
+                        bpy.ops.object.transform_apply(scale=True)
                 
                 case "apply_pose":
-                    # Apply the current pose
+                    # Apply the current pose (a sanity check to make sure an Armature modifier named "Armature" exists would be nice)
                     self.debug("Applying pose")
+                    #    with bpy.context.temp_override(selected_objects=[mesh], mode='OBJECT'):
+                    #        bpy.ops.object.modifier_apply(modifier='Armature')
                     with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
-                        bpy.ops.object.modifier_apply('Armature')
+                        bpy.ops.object.modifier_apply(modifier='Armature')
                 
                 case "delete_armature":
                     # Delete the Sims 4 rig.
@@ -445,6 +447,8 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     bpy.ops.tower_unite_suite.create_armature()
                     # TU Suite sets Blender to Edit mode after spawning its armature, for some reason.
                     bpy.ops.object.mode_set('OBJECT')
+                    # TODO: Give the meshes an Armature modifier
+                    # TODO: Connect the new Armature modifer to the TU armature
                 
                 case "fix_vertex_groups":
                     # Somehow run object.sims4_fix_vertex_groups
