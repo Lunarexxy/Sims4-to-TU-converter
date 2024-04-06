@@ -395,9 +395,9 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     vz = action["Z"]
                     axis = action["axis"]
                     with bpy.context.temp_override(selected_objects=bone, mode='POSE'):
-                        bpy.ops.transform.rotate( value=vx, orient_type="X", orient_type=axis )
-                        bpy.ops.transform.rotate( value=vy, orient_type="Y", orient_type=axis )
-                        bpy.ops.transform.rotate( value=vz, orient_type="Z", orient_type=axis )
+                        bpy.ops.transform.rotate( value=vx, orient_axis="X", orient_type=axis )
+                        bpy.ops.transform.rotate( value=vy, orient_axis="Y", orient_type=axis )
+                        bpy.ops.transform.rotate( value=vz, orient_axis="Z", orient_type=axis )
                 
                 case "move":
                     # Select the bone in action["bone_name"]
