@@ -224,7 +224,7 @@ class VIEW3D_PT_Sims4VertexGroupFixer(bpy.types.Panel):
         self.layout.label(text="1: Import .dae model")
         self.layout.label(text="2: Select mesh")
         self.layout.label(text='3: Press "Fix Vertex Groups"')
-        if obj.type == 'MESH':
+        if not obj is None and obj.type == 'MESH':
             self.layout.operator('object.sims4_fix_vertex_groups', text="Fix Vertex Groups", icon="FUND")
         else:
             self.layout.operator('object.sims4_fix_vertex_groups', text="Select a mesh first.", icon="X")
