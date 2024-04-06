@@ -376,37 +376,81 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
             #  with bpy.context.temp_override(selected_objects=objs):
             #  bpy.ops.object.delete()
 
+            temp_context = bpy.context.copy()
             match action["transform_type"]:
                 case "rotate":
                     # Select the bone in action["bone_name"]
                     # bpy.ops.transform.rotate()
-                    self.debug("rotate")
+                    if rig is None:
+                        self.debug("FAILED: Trying to rotate bones on non-existent rig.")
+                        return {"CANCELLED"}
+                    bone = rig.pose.bones.get(action["bone_name"])
+                    if bone is None: #TODO: test this, i have no clue if this case is possible to reach
+                        self.debug("FAILED: Trying to pose bone that doesn't exist: "+action["bone_name"])
+                        return {"CANCELLED"}
+
+                    self.debug("Rotating bone "+action["bone_name"])
+                    with bpy.context.temp_override(selected_objects=bone):
+                        bpy.ops.object.mode_set('POSE')
+                        bpy.ops.transform.rotate( value=action["X"], orient_type="X", orient_type=action["axis"] )
+                        bpy.ops.transform.rotate( value=action["Y"], orient_type="Y", orient_type=action["axis"] )
+                        bpy.ops.transform.rotate( value=action["Z"], orient_type="Z", orient_type=action["axis"] )
+                
                 case "move":
                     # Select the bone in action["bone_name"]
                     # bpy.ops.transform.translate()
-                    self.debug("move")
+                    if rig is None:
+                        self.debug("FAILED: Trying to rotate bones on non-existent rig.")
+                        return {"CANCELLED"}
+                    bone = rig.pose.bones.get(action["bone_name"])
+                    if bone is None: #TODO: test this, i have no clue if this case is possible to reach
+                        self.debug("FAILED: Trying to pose bone that doesn't exist: "+action["bone_name"])
+                        return {"CANCELLED"}
+
+                    self.debug("Moving bone "+action["bone_name"])
+                    with bpy.context.temp_override(selected_objects=bone):
+                        bpy.ops.object.mode_set('POSE')
+                        move_vector = (action["X"], action["Y"], action["Z"])
+                        bpy.ops.transform.translate(value=move_vector, orient_type=action["axis"])
+                        bpy.ops.object.transform_apply()
+                
                 case "scale_mesh":
                     # Select each child mesh
                     # bpy.ops.transform.resize()
                     # Then apply the scale
+                    with bpy.context.temp_override(selected_objects=child_meshes):
+                        bpy.ops.object.mode_set('POSE')
+                        scale_vector = (action["X"], action["Y"], action["Z"])
+                        bpy.ops.transform.resize(value=scale_vector, orient_type=action["axis"])
+                        bpy.ops.object.transform_apply()
                     self.debug("scale_mesh")
+                
                 case "apply_pose":
                     # Select each child mesh
                     # bpy.ops.object.modifier_apply('Armature')
+                    with bpy.context.temp_override(selected_objects=child_meshes):
+                        bpy.ops.object.modifier_apply('Armature')
                     self.debug("apply_pose")
+                
                 case "delete_armature":
                     # Select rig
                     # bpy.ops.object.delete()
+                    with bpy.context.temp_override(selected_objects=[rig]):
+                        bpy.ops.object.delete(confirm=False)
                     self.debug("delete_armature")
+                
                 case "spawn_tu_rig":
                     # Somehow run TU Suite's armature-spawning code
                     # and configure it as desired.
                     self.debug("spawn_tu_rig")
+                
                 case "fix_vertex_groups":
                     # Somehow run object.sims4_fix_vertex_groups
                     self.debug("fix_vertex_groups")
+                
                 case _:
                     # Apparently the list of actions can get stuck in memory even after re-installing the addon.
+                    # This can make invalid actions remain.
                     self.debug("FAILED: Invalid transform_type data. Restart Blender or yell at Lunarexxy.")
                     return {"CANCELLED"}
                 
