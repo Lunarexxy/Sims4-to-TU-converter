@@ -427,8 +427,6 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                 case "apply_pose":
                     # Apply the current pose (a sanity check to make sure an Armature modifier named "Armature" exists would be nice)
                     self.debug("Applying pose")
-                    #    with bpy.context.temp_override(selected_objects=[mesh], mode='OBJECT'):
-                    #        bpy.ops.object.modifier_apply(modifier='Armature')
                     with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
                         bpy.ops.object.modifier_apply(modifier='Armature')
                 
@@ -470,10 +468,10 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
         # - User presses an "Auto Rig" button that activates this function.
         # - Script checks if the Tower Unite Suite is installed, and cancels with an error message if it isn't.
         # - Script gets a reference to the rig and the child mesh(es) (Object.children)
-        # ? Script poses the rig based on pre-defined values that differ by model age and gender. (defined in Sims4_Char_Transformations.py - bpy.ops.transform.rotate - bpy.types.Object.select_get())
-        # ? Script applies the Armature modifier on each child mesh (bpy.ops.object.modifier_apply(modifier='Armature')
-        # ? Script deletes the rig (bpy.ops.object.delete())
-        # ? Script scales each child mesh based on pre-defined values, which may differ by model age and gender. (bpy.ops.transform.resize())
+        # - Script poses the rig based on pre-defined values that differ by model age and gender. (defined in Sims4_Char_Transformations.py - bpy.ops.transform.rotate - bpy.types.Object.select_get())
+        # - Script applies the Armature modifier on each child mesh (bpy.ops.object.modifier_apply(modifier='Armature')
+        # - Script deletes the rig (bpy.ops.object.delete())
+        # - Script scales each child mesh based on pre-defined values, which may differ by model age and gender. (bpy.ops.transform.resize())
         # ? Script applies the scale. (bpy.ops.object.transform_apply(scale=True))
         # X Script optionally adds the normal map from the same directory as the diffuse map. (OPTIONAL: this is a nice-to-have but not crucial so i'm leaving it for now)
         # ? Script spawns the Tower Unite Armature, with the right arm height.
