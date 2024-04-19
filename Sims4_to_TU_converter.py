@@ -377,6 +377,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
             #  bpy.ops.object.delete()
 
             temp_context = bpy.context.copy()
+            print(str(temp_context))
             match action["transform_type"]:
                 case "rotate":
                     # Select the bone in action["bone_name"]
@@ -385,16 +386,18 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         self.debug("FAILED: Trying to rotate bones on non-existent rig.")
                         return {"CANCELLED"}
                     bone = rig.pose.bones.get(action["bone_name"])
-                    if bone is None: #TODO: test this, i have no clue if this case is possible to reach
+                    if bone is None:
                         self.debug("FAILED: Trying to pose bone that doesn't exist: "+action["bone_name"])
                         return {"CANCELLED"}
 
                     self.debug("Rotating bone "+action["bone_name"])
+                    self.debug(action)
                     vx = action["X"]
                     vy = action["Y"]
                     vz = action["Z"]
                     axis = action["axis"]
-                    with bpy.context.temp_override(selected_objects=bone, mode='POSE'):
+                    with bpy.context.temp_override(active_object=rig, pose_object=rig, objects_in_mode=rig, objects_in_mode_unique_data=[rig], active_pose_bone=bone, selected_pose_bones=[bone], selected_pose_bones_from_active_object=[bone], mode='POSE'):
+                        self.debug( "Bone rotate valid: "+ str(bpy.ops.transform.rotate.poll()) )
                         bpy.ops.transform.rotate( value=vx, orient_axis="X", orient_type=axis )
                         bpy.ops.transform.rotate( value=vy, orient_axis="Y", orient_type=axis )
                         bpy.ops.transform.rotate( value=vz, orient_axis="Z", orient_type=axis )
@@ -406,54 +409,64 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         self.debug("FAILED: Trying to rotate bones on non-existent rig.")
                         return {"CANCELLED"}
                     bone = rig.pose.bones.get(action["bone_name"])
-                    if bone is None: #TODO: test this, i have no clue if this case is possible to reach
+                    if bone is None:
                         self.debug("FAILED: Trying to pose bone that doesn't exist: "+action["bone_name"])
                         return {"CANCELLED"}
 
                     self.debug("Moving bone "+action["bone_name"])
-                    with bpy.context.temp_override(selected_objects=bone, mode='POSE'):
+                    with bpy.context.temp_override(pose_object=rig, active_pose_bone=bone, mode='POSE'):
                         move_vector = (action["X"], action["Y"], action["Z"])
+                        self.debug( "Bone translate valid: "+ str(bpy.ops.transform.translate.poll()) )
                         bpy.ops.transform.translate(value=move_vector, orient_type=action["axis"])
                         bpy.ops.object.transform_apply()
                 
                 case "scale_mesh":
                     # Scale the child meshes and apply the new scale
                     self.debug("Scaling mesh(es)")
-                    with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
-                        scale_vector = (action["X"], action["Y"], action["Z"])
-                        bpy.ops.transform.resize(value=scale_vector, orient_type=action["axis"])
-                        bpy.ops.object.transform_apply(scale=True)
+                    for mesh in child_meshes:
+                        with bpy.context.temp_override(active_object=mesh, mode='OBJECT'):
+                            scale_vector = (action["X"], action["Y"], action["Z"])
+                            self.debug( "Resize valid: "+ str(bpy.ops.transform.resize.poll()) )
+                            bpy.ops.transform.resize(value=scale_vector, orient_type=action["axis"])
+                            self.debug( "Transform_apply valid: "+ str(bpy.ops.object.transform_apply.poll()) )
+                            bpy.ops.object.transform_apply(scale=True)
                 
                 case "apply_pose":
                     # Apply the current pose (a sanity check to make sure an Armature modifier named "Armature" exists would be nice)
                     self.debug("Applying pose")
-                    with bpy.context.temp_override(selected_objects=child_meshes, mode='OBJECT'):
-                        bpy.ops.object.modifier_apply(modifier='Armature')
+                    for mesh in child_meshes:
+                        with bpy.context.temp_override(active_object=mesh, mode='OBJECT'):
+                            self.debug( "Apply modifier armature valid: "+ str(bpy.ops.object.modifier_apply.poll()) )
+                            bpy.ops.object.modifier_apply(modifier='Armature')
+                            #self.debug( "Apply pose valid: "+ str(bpy.ops.pose.armature_apply.poll()) )
+                            #bpy.ops.pose.armature_apply()
                 
                 case "delete_armature":
                     # Delete the Sims 4 rig.
                     if not rig is None:
                         self.debug("Deleting armature")
-                        with bpy.context.temp_override(selected_objects=[rig], mode='OBJECT'):
+                        with bpy.context.temp_override(active_object=rig, mode='OBJECT'):
+                            self.debug( "Rig delete valid: "+str(bpy.ops.object.delete.poll()) )
                             bpy.ops.object.delete(confirm=False)
                 
                 case "spawn_tu_rig":
                     # Configure and run TU Suite's armature-spawning code. Only the "arms raised" value should matter here.
-                    self.debug("Spawning TU Armature")
+                    self.debug("Spawning TU Armature (disabled)")
                     # This is kind of a ghetto way to do it but hopefully it works...
-                    bpy.types.Scene.TU_Armature_Props.t_pose = action["arms_raised_percent"]
-                    bpy.ops.tower_unite_suite.create_armature()
+                    #bpy.types.Scene.TU_Armature_Props.t_pose = action["arms_raised_percent"]
+                    #bpy.ops.tower_unite_suite.create_armature()
                     # TU Suite sets Blender to Edit mode after spawning its armature, for some reason.
-                    bpy.ops.object.mode_set('OBJECT')
+                    #bpy.ops.object.mode_set('OBJECT')
                     # TODO: Give the meshes an Armature modifier
                     # TODO: Connect the new Armature modifer to the TU armature
                 
                 case "fix_vertex_groups":
+                    pass
                     # Somehow run object.sims4_fix_vertex_groups
-                    for mesh in child_meshes:
-                        self.debug("Fixing vertex groups on " + mesh.name)
-                        with bpy.context.temp_override(selected_objects=[mesh], mode='OBJECT'):
-                            bpy.ops.object.sims4_fix_vertex_groups()
+                    #for m in child_meshes:
+                    #    self.debug("Fixing vertex groups on " + m.name)
+                    #    with bpy.context.temp_override(active_object=m, mode='OBJECT'):
+                    #        bpy.ops.object.sims4_fix_vertex_groups()
                 
                 case _:
                     # Apparently the list of actions can get stuck in memory even after re-installing the addon.
