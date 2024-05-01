@@ -35,6 +35,7 @@ bl_info = {
 
 import bpy
 from math import *
+from mathutils import Vector
 import Sims4_Char_Transformations as SimData
 
 
@@ -392,16 +393,15 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         return {"CANCELLED"}
 
                     self.debug("Rotating bone "+action["bone_name"])
-                    self.debug(action)
                     vx = action["X"]
                     vy = action["Y"]
                     vz = action["Z"]
                     axis = action["axis"]
-                    with bpy.context.temp_override(active_object=rig, pose_object=rig, objects_in_mode=rig, objects_in_mode_unique_data=[rig], active_pose_bone=bone, selected_pose_bones=[bone], selected_pose_bones_from_active_object=[bone], mode='POSE'):
-                        self.debug( "Bone rotate valid: "+ str(bpy.ops.transform.rotate.poll()) )
-                        bpy.ops.transform.rotate( value=radians(vx), orient_axis="X", orient_type=axis )
-                        bpy.ops.transform.rotate( value=radians(vy), orient_axis="Y", orient_type=axis )
-                        bpy.ops.transform.rotate( value=radians(vz), orient_axis="Z", orient_type=axis )
+                    with bpy.context.temp_override(active_object=rig, mode='POSE'):
+                        bone.rotation_mode = "XYZ"
+                        bone.rotation_euler.rotate_axis("X", radians(vx))
+                        bone.rotation_euler.rotate_axis("Y", radians(vy))
+                        bone.rotation_euler.rotate_axis("Z", radians(vz))
                 
                 case "move":
                     # Select the bone in action["bone_name"]
@@ -415,11 +415,12 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         return {"CANCELLED"}
 
                     self.debug("Moving bone "+action["bone_name"])
-                    with bpy.context.temp_override(pose_object=rig, active_pose_bone=bone, mode='POSE'):
-                        move_vector = (action["X"], action["Y"], action["Z"])
+                    with bpy.context.temp_override(active_object=rig, mode='POSE'):
+                        move_vector = Vector((action["X"], action["Y"], action["Z"]))
                         self.debug( "Bone translate valid: "+ str(bpy.ops.transform.translate.poll()) )
-                        bpy.ops.transform.translate(value=move_vector, orient_type=action["axis"])
-                        bpy.ops.object.transform_apply()
+                        #bpy.ops.transform.translate(value=move_vector, orient_type=action["axis"])
+                        bone.translate(move_vector)
+                        #bpy.ops.object.transform_apply()
                 
                 case "scale_mesh":
                     # Scale the child meshes and apply the new scale
