@@ -34,6 +34,7 @@ bl_info = {
 }
 
 import bpy
+from math import *
 import Sims4_Char_Transformations as SimData
 
 
@@ -398,9 +399,9 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     axis = action["axis"]
                     with bpy.context.temp_override(active_object=rig, pose_object=rig, objects_in_mode=rig, objects_in_mode_unique_data=[rig], active_pose_bone=bone, selected_pose_bones=[bone], selected_pose_bones_from_active_object=[bone], mode='POSE'):
                         self.debug( "Bone rotate valid: "+ str(bpy.ops.transform.rotate.poll()) )
-                        bpy.ops.transform.rotate( value=vx, orient_axis="X", orient_type=axis )
-                        bpy.ops.transform.rotate( value=vy, orient_axis="Y", orient_type=axis )
-                        bpy.ops.transform.rotate( value=vz, orient_axis="Z", orient_type=axis )
+                        bpy.ops.transform.rotate( value=radians(vx), orient_axis="X", orient_type=axis )
+                        bpy.ops.transform.rotate( value=radians(vy), orient_axis="Y", orient_type=axis )
+                        bpy.ops.transform.rotate( value=radians(vz), orient_axis="Z", orient_type=axis )
                 
                 case "move":
                     # Select the bone in action["bone_name"]
