@@ -368,7 +368,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
             # All actions need a transform type.
             if not "transform_type" in action:
                 # Not the most user-friendly error... but hopefully it'll never show up.
-                self.debug("FAILED: Missing transform_type data. Yell at Lunarexxy.")
+                self.debug("FAILED: Missing transform_type data for "+gender+" "+age)
                 return {"CANCELLED"}
 
             temp_context = bpy.context.copy()
