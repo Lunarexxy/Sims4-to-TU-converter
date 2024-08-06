@@ -368,22 +368,14 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
             # All actions need a transform type.
             if not "transform_type" in action:
                 # Not the most user-friendly error... but hopefully it'll never show up.
-                self.debug("FAILED: Missing transform_type data. Yell at Lunarexxy.")
+                self.debug("FAILED: Missing transform_type data for "+gender+" "+age)
                 return {"CANCELLED"}
-
-            # Deselect everything
-            # TODO
-            # actually apparently you can temporarily override the context
-            # in blender 3.2+ by doing:
-            #  with bpy.context.temp_override(selected_objects=objs):
-            #  bpy.ops.object.delete()
 
             temp_context = bpy.context.copy()
             print(str(temp_context))
             match action["transform_type"]:
-                case "rotate":
-                    # Select the bone in action["bone_name"]
-                    # bpy.ops.transform.rotate()
+                case "rotate": # INCOMPLETE
+                    # Select the bone in action["bone_name"] and rotate it by action["X","Y","Z"] on the given local/global axis action["axis"]
                     if rig is None:
                         self.debug("FAILED: Trying to rotate bones on non-existent rig.")
                         return {"CANCELLED"}
@@ -403,7 +395,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         bone.rotation_euler.rotate_axis("Y", radians(vy))
                         bone.rotation_euler.rotate_axis("Z", radians(vz))
                 
-                case "move":
+                case "move": # INCOMPLETE
                     # Select the bone in action["bone_name"]
                     # bpy.ops.transform.translate()
                     if rig is None:
@@ -422,7 +414,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                         bone.translate(move_vector)
                         #bpy.ops.object.transform_apply()
                 
-                case "scale_mesh":
+                case "scale_mesh": # NEEDS TESTING
                     # Scale the child meshes and apply the new scale
                     self.debug("Scaling mesh(es)")
                     for mesh in child_meshes:
@@ -433,7 +425,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                             self.debug( "Transform_apply valid: "+ str(bpy.ops.object.transform_apply.poll()) )
                             bpy.ops.object.transform_apply(scale=True)
                 
-                case "apply_pose":
+                case "apply_pose": # NEEDS TESTING
                     # Apply the current pose (a sanity check to make sure an Armature modifier named "Armature" exists would be nice)
                     self.debug("Applying pose")
                     for mesh in child_meshes:
@@ -443,7 +435,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                             #self.debug( "Apply pose valid: "+ str(bpy.ops.pose.armature_apply.poll()) )
                             #bpy.ops.pose.armature_apply()
                 
-                case "delete_armature":
+                case "delete_armature": # NEEDS TESTING
                     # Delete the Sims 4 rig.
                     if not rig is None:
                         self.debug("Deleting armature")
@@ -451,7 +443,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                             self.debug( "Rig delete valid: "+str(bpy.ops.object.delete.poll()) )
                             bpy.ops.object.delete(confirm=False)
                 
-                case "spawn_tu_rig":
+                case "spawn_tu_rig": # INCOMPLETE
                     # Configure and run TU Suite's armature-spawning code. Only the "arms raised" value should matter here.
                     self.debug("Spawning TU Armature (disabled)")
                     # This is kind of a ghetto way to do it but hopefully it works...
@@ -462,7 +454,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     # TODO: Give the meshes an Armature modifier
                     # TODO: Connect the new Armature modifer to the TU armature
                 
-                case "fix_vertex_groups":
+                case "fix_vertex_groups": # INCOMPLETE
                     pass
                     # Somehow run object.sims4_fix_vertex_groups
                     #for m in child_meshes:
