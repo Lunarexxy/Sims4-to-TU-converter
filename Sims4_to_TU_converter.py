@@ -472,7 +472,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                 case _:
                     # Apparently the list of actions can get stuck in memory even after re-installing the addon.
                     # This can make invalid actions remain.
-                    self.debug("FAILED: Invalid transform_type data. Restart Blender or yell at Lunarexxy.")
+                    self.debug("FAILED: Invalid transform_type data. Restart Blender if you've modified the list.")
                     return {"CANCELLED"}
                 
 
