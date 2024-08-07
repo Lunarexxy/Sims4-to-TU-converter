@@ -261,7 +261,7 @@ class VIEW3D_PT_Sims4AutoRig(bpy.types.Panel):
             self.layout.prop(sim_properties, "age")
             #self.layout.label(text=sim_properties.age)
             self.layout.label(text="3: Press Auto Rig")
-            self.layout.operator('object.sims4_auto_rig', text="Auto Rig", icon="FUND")
+            self.layout.operator('object.sims4_auto_rig', text="Auto Rig (WIP)", icon="FUND")
             self.layout.label(text="4: Check for errors at")
             self.layout.label(text="the bottom of the screen")
             
@@ -296,6 +296,11 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
      # having to add "{'INFO'}, " to every print call was annoying, lol
     def debug(self, message):
         self.report({'INFO'}, str(message))
+
+    def select_bone(self, bone):
+        bone.select = True
+        bone.select_head = True
+        bone.select_tail = True
 
     def get_sim_data(self, gender, age):
         match gender:
@@ -368,7 +373,7 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
             # All actions need a transform type.
             if not "transform_type" in action:
                 # Not the most user-friendly error... but hopefully it'll never show up.
-                self.debug("FAILED: Missing transform_type data for "+gender+" "+age)
+                self.debug("FAILED: Missing transform_type data for "+context.scene.sim_properties.gender+" "+context.scene.sim_properties.age)
                 return {"CANCELLED"}
 
             # Deselect everything
@@ -387,7 +392,8 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     if rig is None:
                         self.debug("FAILED: Trying to rotate bones on non-existent rig.")
                         return {"CANCELLED"}
-                    bone = rig.pose.bones.get(action["bone_name"])
+                    #bone = rig.pose.bones.get(action["bone_name"])
+                    bone = rig.data.bones.get(action["bone_name"])
                     if bone is None:
                         self.debug("FAILED: Trying to pose bone that doesn't exist: "+action["bone_name"])
                         return {"CANCELLED"}
@@ -397,11 +403,16 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                     vy = action["Y"]
                     vz = action["Z"]
                     axis = action["axis"]
+                    #with bpy.context.temp_override(active_object=rig, mode='POSE'):
+                    #    bone.rotation_mode = "XYZ"
+                    #    bone.rotation_euler.rotate_axis("X", radians(vx))
+                    #    bone.rotation_euler.rotate_axis("Y", radians(vy))
+                    #    bone.rotation_euler.rotate_axis("Z", radians(vz))
                     with bpy.context.temp_override(active_object=rig, mode='POSE'):
-                        bone.rotation_mode = "XYZ"
-                        bone.rotation_euler.rotate_axis("X", radians(vx))
-                        bone.rotation_euler.rotate_axis("Y", radians(vy))
-                        bone.rotation_euler.rotate_axis("Z", radians(vz))
+                        self.select_bone(bone)
+                        bpy.ops.transform.rotate(value = radians(vx), orient_axis="X", orient_type='GLOBAL')
+                        bpy.ops.transform.rotate(value = radians(vy), orient_axis="Y", orient_type='GLOBAL')
+                        bpy.ops.transform.rotate(value = radians(vz), orient_axis="Z", orient_type='GLOBAL')
                 
                 case "move":
                     # Select the bone in action["bone_name"]
@@ -437,18 +448,19 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
                 case "apply_pose":
                     # Apply the current pose (a sanity check to make sure an Armature modifier named "Armature" exists would be nice)
                     self.debug("Applying pose")
-                    for mesh in child_meshes:
-                        with bpy.context.temp_override(active_object=mesh, mode='OBJECT'):
-                            self.debug( "Apply modifier armature valid: "+ str(bpy.ops.object.modifier_apply.poll()) )
-                            bpy.ops.object.modifier_apply(modifier='Armature')
+                    #for mesh in child_meshes:
+                    #    with bpy.context.temp_override(active_object=mesh, mode='OBJECT'):
+                    #        self.debug( "Apply modifier armature valid: "+ str(bpy.ops.object.modifier_apply.poll()) )
+                    #        bpy.ops.object.modifier_apply(modifier='Armature')
                 
                 case "delete_armature":
                     # Delete the Sims 4 rig.
-                    if not rig is None:
-                        self.debug("Deleting armature")
-                        with bpy.context.temp_override(active_object=rig, mode='OBJECT'):
-                            self.debug( "Rig delete valid: "+str(bpy.ops.object.delete.poll()) )
-                            bpy.ops.object.delete(confirm=False)
+                    #if not rig is None:
+                    #    self.debug("Deleting armature")
+                    #    with bpy.context.temp_override(active_object=rig, mode='OBJECT'):
+                    #        self.debug( "Rig delete valid: "+str(bpy.ops.object.delete.poll()) )
+                    #        bpy.ops.object.delete(confirm=False)
+                    pass
                 
                 case "spawn_tu_rig":
                     # Configure and run TU Suite's armature-spawning code. Only the "arms raised" value should matter here.
@@ -493,8 +505,8 @@ class OBJECT_OT_Sims4AutoRig(bpy.types.Operator):
         # ? Script calls object.sims4_fix_vertex_groups on each child mesh.
         # - User manually fixes some weighting under the chin, if they want.
         # - User exports the model.
-        self.debug("FAILED: still WIP :)")
-        return {"CANCELLED"}
+        self.debug("SUCCESS: Auto-Rigging completed! Except probably not because WIP.")
+        return {"FINISHED"}
 
 def register():
     bpy.utils.register_class(OBJECT_OT_Sims4VertexGroupFixer)
