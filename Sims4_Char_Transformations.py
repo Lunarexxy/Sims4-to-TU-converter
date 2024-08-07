@@ -47,7 +47,7 @@ Female_Adult = [
 
 # Rotating the feet and thighs closer together has pushed the feet into the ground slightly.
 # This nudges them back up. It should be pretty much imperceptible either way, though.
-# This might need to be done after scaling...
+# This might need to be done after scaling since my test didn't work out as expected...
 {"transform_type":"move", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "X":0.0, "Y":0.0, "Z":0.062},
 {"transform_type":"move", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "X":0.0, "Y":0.0, "Z":0.062},
 
