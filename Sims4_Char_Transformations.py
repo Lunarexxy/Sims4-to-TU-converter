@@ -42,6 +42,7 @@ Female_Adult = [
 {"transform_type":"rotate", "bone_name":"b__R_Thigh__", "axis":"GLOBAL", "X":0.0, "Y":-1.5, "Z":0.0},
 {"transform_type":"rotate", "bone_name":"b__L_Thigh__", "axis":"GLOBAL", "X":0.0, "Y":1.5, "Z":0.0},
 
+# this doesn't seem correct? rotating positively along global z makes the right foot turn too far left
 {"transform_type":"rotate", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "X":0.0, "Y":1.5, "Z":5.0},
 {"transform_type":"rotate", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "X":0.0, "Y":-1.5, "Z":5.0},
 
