@@ -42,24 +42,24 @@ Female_Adult = [
 {"transform_type":"rotate", "bone_name":"b__R_Thigh__", "axis":"GLOBAL", "X":0.0, "Y":-1.5, "Z":0.0},
 {"transform_type":"rotate", "bone_name":"b__L_Thigh__", "axis":"GLOBAL", "X":0.0, "Y":1.5, "Z":0.0},
 
-# this doesn't seem correct? rotating positively along global z makes the right foot turn too far left
-{"transform_type":"rotate", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "X":0.0, "Y":1.5, "Z":5.0},
+{"transform_type":"rotate", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "X":0.0, "Y":1.5, "Z":-5.0},
 {"transform_type":"rotate", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "X":0.0, "Y":-1.5, "Z":5.0},
 
 # Rotating the feet and thighs closer together has pushed the feet into the ground slightly.
 # This nudges them back up. It should be pretty much imperceptible either way, though.
 # This might need to be done after scaling since my test didn't work out as expected...
+# The value unscaled is 0.000553571429
 {"transform_type":"move", "bone_name":"b__R_Foot__", "axis":"GLOBAL", "X":0.0, "Y":0.0, "Z":0.062},
 {"transform_type":"move", "bone_name":"b__L_Foot__", "axis":"GLOBAL", "X":0.0, "Y":0.0, "Z":0.062},
 
 {"transform_type":"rotate", "bone_name":"b__R_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":15.0},
-{"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":15.0},
 {"transform_type":"rotate", "bone_name":"b__R_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":10.0, "Z":0.0},
+{"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":15.0},
 {"transform_type":"rotate", "bone_name":"b__L_Pinky0__", "axis":"LOCAL", "X":0.0, "Y":-10.0, "Z":0.0},
 
 {"transform_type":"rotate", "bone_name":"b__R_Ring0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":13.0},
-{"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":13.0},
 {"transform_type":"rotate", "bone_name":"b__R_Ring0__", "axis":"LOCAL", "X":0.0, "Y":3.0, "Z":0.0},
+{"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":13.0},
 {"transform_type":"rotate", "bone_name":"b__L_Ring0__", "axis":"LOCAL", "X":0.0, "Y":-3.0, "Z":0.0},
 
 {"transform_type":"rotate", "bone_name":"b__R_Mid0__", "axis":"LOCAL", "X":0.0, "Y":0.0, "Z":13.0},
