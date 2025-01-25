@@ -82,7 +82,7 @@ Finally, delete the Sims 4 rig.
 
 If all went well, your model should now be in the same pose as the official armature, and connected to it. The vertex group names on each mesh will still be wrong, which means it can't be animated yet, so follow the steps in the next section.
 
-*(Also, it might not have any texture applied. You can go into the Material tab of each mesh to add an image texture pointing to the texture files, if so.)*
+*(Also, it might not have any texture applied. You can go into the Material tab of each mesh, then an image texture pointing to the texture files, if so.)*
 
 ## How to use the script
 
@@ -93,7 +93,7 @@ If all went well, your model should now be in the same pose as the official arma
  * If the model has multiple meshes, do this to each one.
  * Your model should now have vertex groups that work with Tower Unite.
 
-![image](https://user-images.githubusercontent.com/8879206/191913164-3cdb8ffc-d38c-483c-a7a0-6f1e910e98dc.png)
+![blender_CrxW2uf5hB](https://github.com/user-attachments/assets/039817cd-8513-4335-8aaa-b5b187835965)
 
 If you want, you can also use the "Merge Fingers Into Hands" tool now. This will stop your model from having its fingers posed in-game. Tower Unite's finger animations are quite poor, so sometimes this looks better. It's not required, though.
 
