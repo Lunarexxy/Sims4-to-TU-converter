@@ -27,7 +27,7 @@
 
 bl_info = {
     "name": "Sims4 to Tower Unite Converter (S4TU)",
-    "version": (1, 9),
+    "version": (1, 8),
     "blender": (2, 80, 0),
     "category": "Object",
     "author": "Lunarexxy",
