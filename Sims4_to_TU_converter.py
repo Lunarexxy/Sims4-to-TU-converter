@@ -26,8 +26,8 @@
 
 
 bl_info = {
-    "name": "Sims4 to Tower Unite Converter",
-    "version": (1, 8),
+    "name": "Sims4 to Tower Unite Converter (S4TU)",
+    "version": (1, 9),
     "blender": (2, 80, 0),
     "category": "Object",
     "author": "Lunarexxy",
@@ -36,10 +36,9 @@ bl_info = {
 
 import bpy
 
-
-class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
-    """Run this to make the model compatible with the Tower Unite Armature"""
-    bl_idname = "object.sims4_fix_vertex_groups" # some unique internal id - can be called from console
+class OBJECT_OT_S4TUVertexGroupFixer(bpy.types.Operator):
+    """Converts the mesh's vertex groups to match the Tower Unite Armature"""
+    bl_idname = "object.s4tu_fix_vertex_groups" # some unique internal id - can be called from console
     bl_label = "Fix Vertex Groups" # should be what's shown in the f3 menu
     bl_options = {'REGISTER', 'UNDO'} # apparently makes it work with the undo system
     
@@ -193,7 +192,7 @@ class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
             return {'CANCELLED'}
         # (since i apparently can't set the name, i have to rely on new modifiers being called "VertexWeightMix")
         if "VertexWeightMix" in obj.modifiers: 
-            self.debug("FAILED: There's currently a modifier named VertexWeightMix on the model. Can't run script safely.")
+            self.debug("FAILED: Can't run safely, there's a modifier named VertexWeightMix on the mesh.")
             return {'CANCELLED'}
 
         # Replace names
@@ -212,32 +211,167 @@ class OBJECT_OT_Sims4VertexGroupFixer(bpy.types.Operator):
         self.report({'INFO'}, 'SUCCESS: Done!')
         return {'FINISHED'}
 
-class VIEW3D_PT_Sims4VertexGroupFixer(bpy.types.Panel):
+class VIEW3D_PT_S4TUVertexGroupFixer(bpy.types.Panel):
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Sims 4'
-    bl_label = 'S4TU - Fix Vertex Groups'
+    bl_category = 'S4TU'
+    bl_label = 'Fix Vertex Groups'
     
     def draw(self, context):
         obj = context.active_object
 
-        self.layout.label(text="1: Import .dae model")
+        self.layout.label(text="1: Import Sims4 model")
         self.layout.label(text="2: Select mesh")
         self.layout.label(text='3: Press "Fix Vertex Groups"')
         if not obj is None and obj.type == 'MESH':
-            self.layout.operator('object.sims4_fix_vertex_groups', text="Fix Vertex Groups", icon="FUND")
+            self.layout.operator('object.s4tu_fix_vertex_groups', text="Fix Vertex Groups", icon="FUND")
         else:
-            self.layout.operator('object.sims4_fix_vertex_groups', text="Select a mesh first.", icon="X")
+            self.layout.label(text='   (Select the mesh first!)')
         self.layout.label(text="4: Check for errors at")
         self.layout.label(text="the bottom of the screen")
 
+
+class OBJECT_OT_S4TUMergeFingersIntoHands(bpy.types.Operator):
+    """Merges the finger vertex groups into the hand vertex groups, for characters where you don't want the fingers to be animated."""
+    bl_idname = "object.s4tu_merge_fingers_into_hands" # some unique internal id - can be called from console
+    bl_label = "Merge fingers into hands" # should be what's shown in the f3 menu
+    bl_options = {'REGISTER', 'UNDO'} # apparently makes it work with the undo system
+
+    # List of all the finger bones so they can be merged into the hand, if desired.
+    finger_bones_list = [
+    "thumb_01",
+    "thumb_02",
+    "thumb_03",
+    "index_01",
+    "index_02",
+    "index_03",
+    "middle_01",
+    "middle_02",
+    "middle_03",
+    "ring_01",
+    "ring_02",
+    "ring_03",
+    "pinky_01",
+    "pinky_02",
+    "pinky_03"
+    ]
+
+    # having to add "{'INFO'}, " to every print call was annoying, lol
+    def debug(self, message):
+        self.report({'INFO'}, message)
+    
+    # Merges group_b into group_a, leaving only group_a.
+    # Returns true on success, false on failure.
+    def merge_groups(self, group_a_name, group_b_name):
+        obj = bpy.context.active_object
+        # If the hand group doesn't exist, it's likely because the user hasn't run the Fix Vertex Groups yet.
+        if not group_a_name in obj.vertex_groups:
+            return False
+        if not group_b_name in obj.vertex_groups:
+            return False
+        
+        # Merge group B into A.
+        bpy.ops.object.modifier_add(type='VERTEX_WEIGHT_MIX')
+        obj.modifiers["VertexWeightMix"].mix_set = 'OR'
+        obj.modifiers["VertexWeightMix"].mix_mode = 'ADD'
+        obj.modifiers["VertexWeightMix"].vertex_group_a = group_a_name
+        obj.modifiers["VertexWeightMix"].vertex_group_b = group_b_name
+        bpy.ops.object.modifier_apply(modifier="VertexWeightMix")
+        # Delete group B.
+        bpy.ops.object.vertex_group_set_active(group=group_b_name)
+        bpy.ops.object.vertex_group_remove()
+        return True
+    
+    # Merges all the finger groups into the hand groups.
+    # Returns false if nothing was changed, likely because the vertex groups didn't exist.
+    def merge_all_fingers(self) -> bool:
+        was_anything_changed = False
+        for finger in self.finger_bones_list:
+            if self.merge_groups("hand_l", finger+"_l"): was_anything_changed = True
+            if self.merge_groups("hand_r", finger+"_r"): was_anything_changed = True
+        return was_anything_changed
+    
+    def execute(self, context):
+        obj = context.active_object
+        
+        # Sanity checks
+        if obj is None or obj.type != 'MESH' or obj.name == 'rig':
+            self.debug("FAILED: Mesh is not selected. Make sure you didn't select the rig by accident.")
+            return {'CANCELLED'}
+        if len(obj.vertex_groups) == 0:
+            self.debug("FAILED: Selected mesh has no vertex groups.")
+            return {'CANCELLED'}
+        # (since i apparently can't set the name, i have to rely on new modifiers being called "VertexWeightMix")
+        if "VertexWeightMix" in obj.modifiers: 
+            self.debug("FAILED: Can't run safely, there's a modifier named VertexWeightMix on the mesh.")
+            return {'CANCELLED'}
+
+        # Replace names
+        self.debug("Merging fingers into hand.")
+        was_anything_changed = self.merge_all_fingers()
+        
+        if not was_anything_changed:
+            self.debug("FAILED: Couldn't find anything to merge.")
+            return {'CANCELLED'}
+        
+        self.report({'INFO'}, 'SUCCESS: Done!')
+        return {'FINISHED'}
+
+class VIEW3D_PT_S4TUMergeFingersIntoHands(bpy.types.Panel):
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_category = 'S4TU'
+    bl_label = 'Merge Fingers Into Hands'
+
+    def mesh_has_required_vertex_groups(self, mesh):
+        if not "hand_l" in mesh.vertex_groups and not "hand_r" in mesh.vertex_groups:
+            return False
+
+        # yoink
+        fingers = OBJECT_OT_S4TUMergeFingersIntoHands.finger_bones_list
+        found_a_finger_too = False
+        for finger in fingers:
+            if finger+"_l" in mesh.vertex_groups:
+                found_a_finger_too = True
+                break
+            if finger+"_r" in mesh.vertex_groups:
+                found_a_finger_too = True
+                break
+        return found_a_finger_too
+    
+    def draw(self, context):
+        obj = context.active_object
+
+        self.layout.label(text="1: Import Sims4 model")
+        self.layout.label(text="2: Run Fix Vertex Groups on it.")
+        self.layout.label(text="3: Select mesh.")
+        self.layout.label(text='4: Press "Merge"')
+        if obj is None:
+            self.layout.label(text='   (Select the mesh first!)')
+        elif obj.type != 'MESH':
+            self.layout.label(text='   (Select the mesh first!)')
+        elif not self.mesh_has_required_vertex_groups(obj):
+            self.layout.label(text='   (No hands or fingers to merge.')
+            self.layout.label(text='   Run Fix Vertex Groups first.)')
+        else:
+            self.layout.operator('object.s4tu_merge_fingers_into_hands', text="Merge", icon="FUND")
+        self.layout.label(text="5: Check for errors at")
+        self.layout.label(text="the bottom of the screen")
+
+
 def register():
-    bpy.utils.register_class(OBJECT_OT_Sims4VertexGroupFixer)
-    bpy.utils.register_class(VIEW3D_PT_Sims4VertexGroupFixer)
+    bpy.utils.register_class(OBJECT_OT_S4TUVertexGroupFixer)
+    bpy.utils.register_class(VIEW3D_PT_S4TUVertexGroupFixer)
+
+    bpy.utils.register_class(OBJECT_OT_S4TUMergeFingersIntoHands)
+    bpy.utils.register_class(VIEW3D_PT_S4TUMergeFingersIntoHands)
 
 def unregister():
-    bpy.utils.unregister_class(OBJECT_OT_Sims4VertexGroupFixer)
-    bpy.utils.unregister_class(VIEW3D_PT_Sims4VertexGroupFixer)
+    bpy.utils.unregister_class(OBJECT_OT_S4TUVertexGroupFixer)
+    bpy.utils.unregister_class(VIEW3D_PT_S4TUVertexGroupFixer)
+
+    bpy.utils.unregister_class(OBJECT_OT_S4TUMergeFingersIntoHands)
+    bpy.utils.unregister_class(VIEW3D_PT_S4TUMergeFingersIntoHands)
 
 if __name__ == "__main__":
     register()
